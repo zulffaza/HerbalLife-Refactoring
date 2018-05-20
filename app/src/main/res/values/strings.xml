@@ -6,4 +6,5 @@
     <string name="title_activity_help">Help</string>
     <string name="title_activity_catalog">Catalog</string>
     <string name="title_activity_adas">Adas</string>
+    <string name="catalog">Catalog</string>
 </resources>
