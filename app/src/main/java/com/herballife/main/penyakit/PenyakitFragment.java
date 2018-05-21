@@ -11,7 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.herballife.main.penyakit.search.PenyakitSearchActivity;
+import com.herballife.main.penyakit.search.view.activity.PenyakitSearchActivity;
 import com.herballife.main.penyakit.detail.DetailPenyakitActivity;
 import com.herballife.main.R;
 import com.herballife.main.model.Penyakit;
