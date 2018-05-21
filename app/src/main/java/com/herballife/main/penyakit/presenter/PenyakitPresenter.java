@@ -1,9 +1,8 @@
 package com.herballife.main.penyakit.presenter;
 
-import android.content.Intent;
-
 import com.herballife.main.model.Penyakit;
 import com.herballife.main.penyakit.contract.PenyakitContract;
+import com.herballife.main.penyakit.datasource.PenyakitDataSource;
 import com.herballife.main.penyakit.datasource.PenyakitRepository;
 
 import java.util.List;
@@ -22,19 +21,9 @@ public class PenyakitPresenter implements PenyakitContract.Presenter {
         mView.setPresenter(this);
     }
 
-    public PenyakitPresenter(PenyakitContract.View mView) {
-        this.mView = mView;
-        mView.setPresenter(this);
-    }
-
     @Override
-    public void getpenyakit() {
-
-    }
-
-    @Override
-    public void moveActivity(Intent intent) {
-
+    public void movetoDetailActivity(Penyakit penyakit) {
+        mView.movetoDetailActivity(penyakit);
     }
 
     @Override
@@ -44,7 +33,7 @@ public class PenyakitPresenter implements PenyakitContract.Presenter {
 
     @Override
     public void onStart() {
-        mView.showpenyakit(penyakitList);
+        mPenyakitRepository.loadPenyakit(new PenyakitRepositroyCallback());
     }
 
     @Override
@@ -65,5 +54,18 @@ public class PenyakitPresenter implements PenyakitContract.Presenter {
     @Override
     public void onDestroy() {
 
+    }
+
+
+    private class PenyakitRepositroyCallback implements PenyakitDataSource.LoadPenyakitCallback {
+        @Override
+        public void onLoadSuccess(List<Penyakit> penyakits) {
+            mView.showpenyakit(penyakits);
+        }
+
+        @Override
+        public void onLoadFailed(String message) {
+            mView.showToast(message);
+        }
     }
 }

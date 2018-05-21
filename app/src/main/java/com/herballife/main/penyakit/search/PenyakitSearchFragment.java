@@ -19,7 +19,7 @@ import com.herballife.main.R;
 import com.herballife.main.model.Penyakit;
 import com.herballife.main.penyakit.datasource.PenyakitDataSource;
 import com.herballife.main.penyakit.datasource.PenyakitRepository;
-import com.herballife.main.penyakit.detail.DetailPenyakitActivity;
+import com.herballife.main.penyakit.detail.view.activity.DetailPenyakitActivity;
 import com.herballife.main.util.Injection;
 
 import java.util.ArrayList;
