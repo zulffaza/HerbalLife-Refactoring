@@ -1,6 +1,7 @@
 package com.herballife.main.catalog.detail.presenter;
 
 import com.herballife.main.catalog.detail.contract.DetailCatalogContract;
+import com.herballife.main.model.Catalog;
 
 public class DetailCatalogPresenter implements DetailCatalogContract.Presenter {
 
@@ -22,6 +23,12 @@ public class DetailCatalogPresenter implements DetailCatalogContract.Presenter {
     }
 
     @Override
+    public void onStart(Catalog catalog) {
+        if (isCatalogSet(catalog))
+            mView.showCatalog();
+    }
+
+    @Override
     public void onResume() {
         // Do nothing
     }
@@ -39,5 +46,9 @@ public class DetailCatalogPresenter implements DetailCatalogContract.Presenter {
     @Override
     public void onDestroy() {
         // Do nothing
+    }
+
+    private Boolean isCatalogSet(Catalog catalog) {
+        return catalog != null;
     }
 }
