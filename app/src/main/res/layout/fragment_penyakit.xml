@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <TextView
         android:layout_width="fill_parent"
@@ -10,7 +10,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
         android:background="#000000"
-        android:text="List Penyakit :"        
+        android:text="List Penyakit :"
         android:textColor="#ffffffff"
         android:textSize="25dp" />
 
@@ -19,9 +19,7 @@
         android:layout_width="fill_parent"
         android:layout_height="300dp"
         android:layout_gravity="top"
-        android:layout_marginTop="5dp"
-        >
-    </ListView>
+        android:layout_marginTop="5dp" />
 
     <Button
         android:id="@+id/tombol_cari"

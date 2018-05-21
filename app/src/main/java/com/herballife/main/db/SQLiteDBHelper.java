@@ -1,4 +1,4 @@
-package com.herballife.main;
+package com.herballife.main.db;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

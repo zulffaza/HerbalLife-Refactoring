@@ -16,6 +16,8 @@ import android.widget.ListView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
+import com.herballife.main.db.SQLiteDBHelper;
+
 public class List_catalog extends Activity
 {
 	SQLiteDBHelper helper;
