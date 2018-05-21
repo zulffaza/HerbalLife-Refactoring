@@ -1,4 +1,4 @@
-package com.herballife.main.splashscreen;
+package com.herballife.main.splashscreen.view.fragment;
 
 import android.os.Handler;
 import android.os.Message;

@@ -2,7 +2,7 @@ package com.herballife.main.main.presenter;
 
 import com.herballife.main.catalog.view.activity.CatalogActivity;
 import com.herballife.main.main.contract.MainContract;
-import com.herballife.main.penyakit.PenyakitActivity;
+import com.herballife.main.penyakit.view.activity.PenyakitActivity;
 
 public class MainPresenter implements MainContract.Presenter {
 

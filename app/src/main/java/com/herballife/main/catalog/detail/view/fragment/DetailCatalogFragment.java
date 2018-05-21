@@ -73,16 +73,6 @@ public class DetailCatalogFragment extends Fragment implements DetailCatalogCont
     }
 
     @Override
-    public void setPresenter(@NonNull DetailCatalogContract.Presenter presenter) {
-        mPresenter = presenter;
-    }
-
-    @Override
-    public Context getContextView() {
-        return getContext();
-    }
-
-    @Override
     public void showCatalog() {
         String use = mUseTitle + mCatalog.getUse();
         Bitmap image = mPresenter.createBitmapFromByteArray(mCatalog.getImage());
@@ -90,5 +80,15 @@ public class DetailCatalogFragment extends Fragment implements DetailCatalogCont
         mName.setText(mCatalog.getName());
         mUse.setText(use);
         mImage.setImageBitmap(image);
+    }
+
+    @Override
+    public void setPresenter(@NonNull DetailCatalogContract.Presenter presenter) {
+        mPresenter = presenter;
+    }
+
+    @Override
+    public Context getContextView() {
+        return getContext();
     }
 }

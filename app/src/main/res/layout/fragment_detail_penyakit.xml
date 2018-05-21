@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="#ffffffff"
     android:orientation="vertical"
-    tools:context=".penyakit.detail.DetailPenyakitActivity">
+    tools:context=".penyakit.detail.view.activity.DetailPenyakitActivity">
 
     <TextView
         android:id="@+id/daftar_penyakit"
