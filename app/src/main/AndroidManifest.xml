@@ -45,7 +45,7 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".Detail_katalog"
+            android:name=".catalog.detail.DetailCatalogActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
 

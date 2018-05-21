@@ -37,10 +37,10 @@ public class DetailPenyakitFragment extends Fragment {
     }
 
     @BindString(R.string.detail_penyakit_bahan_title)
-    public String mHerbalMedicineTitile;
+    public String mHerbalMedicineTitle;
 
     @BindString(R.string.detail_penyakit_tutorial_title)
-    public String mTutorialTitile;
+    public String mTutorialTitle;
 
     private Penyakit mPenyakit;
 
@@ -84,8 +84,8 @@ public class DetailPenyakitFragment extends Fragment {
     }
 
     private void showPenyakit() {
-        String herbalMedicine = mHerbalMedicineTitile + mPenyakit.getHerbalMedicine();
-        String tutorial = mTutorialTitile + mPenyakit.getTutorial();
+        String herbalMedicine = mHerbalMedicineTitle + mPenyakit.getHerbalMedicine();
+        String tutorial = mTutorialTitle + mPenyakit.getTutorial();
 
         mName.setText(mPenyakit.getName());
         mHerbalMedicine.setText(herbalMedicine);
