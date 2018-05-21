@@ -1,0 +1,111 @@
+package com.herballife.main.penyakit;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.Toast;
+
+import com.herballife.main.Cari_Penyakit;
+import com.herballife.main.Detail;
+import com.herballife.main.R;
+import com.herballife.main.model.Penyakit;
+import com.herballife.main.penyakit.datasource.PenyakitDataSource;
+import com.herballife.main.penyakit.datasource.PenyakitRepository;
+import com.herballife.main.util.Injection;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import butterknife.OnItemClick;
+
+public class PenyakitFragment extends Fragment {
+
+    public static final String PENYAKIT_EXTRAS_NAME = "penyakit";
+
+    @BindView(R.id.listpenyakit)
+    public ListView mListPenyakit;
+
+    @OnItemClick(R.id.listpenyakit)
+    public void moveToDetail(int position) {
+        Penyakit penyakit = mPenyakits.get(position);
+
+        Intent intent = new Intent(getContext(), Detail.class);
+        intent.putExtra(PENYAKIT_EXTRAS_NAME, penyakit);
+
+        moveActivity(intent);
+    }
+
+    @OnClick(R.id.tombol_cari)
+    public void moveToSearch() {
+        Intent intent = new Intent(getContext(), Cari_Penyakit.class);
+        moveActivity(intent);
+    }
+
+    public static PenyakitFragment newInstance() {
+        return new PenyakitFragment();
+    }
+
+    private List<Penyakit> mPenyakits;
+    private PenyakitRepository mPenyakitRepository;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mPenyakitRepository = Injection.providePenyakitRepository(getContext());
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_penyakit, container, false);
+        ButterKnife.bind(this, view);
+
+        return view;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        mPenyakitRepository.loadPenyakit(new PenyakitRepositoryCallback());
+    }
+
+    private void moveActivity(Intent intent) {
+        getContext().startActivity(intent);
+    }
+
+    private class PenyakitRepositoryCallback implements PenyakitDataSource.LoadPenyakitCallback {
+
+        @Override
+        public void onLoadSuccess(List<Penyakit> penyakits) {
+            List<String> names = getPenyakitNames(penyakits);
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                    getContext(), android.R.layout.simple_list_item_1, names);
+
+            mListPenyakit.setAdapter(adapter);
+            mPenyakits = penyakits;
+        }
+
+        @Override
+        public void onLoadFailed(String message) {
+            Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
+        }
+
+        private List<String> getPenyakitNames(List<Penyakit> penyakits) {
+            List<String> names = new ArrayList<>();
+
+            for (Penyakit penyakit : penyakits)
+                names.add(penyakit.getName());
+
+            return names;
+        }
+    }
+}

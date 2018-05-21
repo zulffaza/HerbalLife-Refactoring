@@ -12,6 +12,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.herballife.main.db.SQLiteDBHelper;
+
 public class Detail_katalog extends Activity
 {
 	public static SQLiteDatabase db;
