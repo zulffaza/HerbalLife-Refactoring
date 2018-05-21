@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.herballife.main.R;
-import com.herballife.main.catalog.CatalogFragment;
+import com.herballife.main.catalog.view.fragment.CatalogFragment;
 import com.herballife.main.model.Catalog;
 import com.herballife.main.util.ActivityUtils;
 

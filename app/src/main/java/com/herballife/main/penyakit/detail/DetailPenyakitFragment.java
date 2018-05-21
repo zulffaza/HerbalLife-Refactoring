@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.herballife.main.catalog.CatalogActivity;
+import com.herballife.main.catalog.view.activity.CatalogActivity;
 import com.herballife.main.R;
 import com.herballife.main.model.Penyakit;
 import com.herballife.main.penyakit.PenyakitFragment;
