@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.herballife.main.MainActivity;
+import com.herballife.main.main.MainActivity;
 import com.herballife.main.R;
 
 import java.util.concurrent.atomic.AtomicInteger;

@@ -6,4 +6,41 @@
     <string name="title_activity_help">Help</string>
     <string name="title_activity_catalog">Catalog</string>
     <string name="title_activity_adas">Adas</string>
+
+    <string name="ok">OK</string>
+    <string name="ya">Ya</string>
+    <string name="tidak">Tidak</string>
+
+    <string name="main_help_title">Help</string>
+    <string name="main_help_message">
+        Herbal Life \n\n
+
+        Herbal Life adalah \n
+        aplikasi berbasis android \n
+        yang berisi cara pengobatan penyakit \n
+        terutama menggunakan tumbuhan herbal \n\n
+
+        Menu Search: \n
+        Digunakan untuk mencari jenis \n
+        penyakit sesuai dengan keyword yang dimasukkan \n\n
+
+        Menu Katalog: \n
+        Berisi seluruh daftar tumbuhan \n
+        yang bisa digunakan sebagai obat \n\n
+
+        Application Name : \n\n
+
+        Herbal Life v1.0.0 \n\n
+
+        Developed By : \n\n
+        Nama : Fajar Teguh \n
+        Nrp : 2103121006 \n
+        Nama : Abdurachman Rizal \n
+        Nrp : 2103121007 \n
+        Nama : Moch Fajar Ramadhan \n
+        Nrp : 2103121027 \n\n
+    </string>
+
+    <string name="main_exit_title">Exit</string>
+    <string name="main_exit_message">Apakah anda benar-benar ingin keluar ?</string>
 </resources>
