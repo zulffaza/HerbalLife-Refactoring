@@ -14,7 +14,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.herballife.main.catalog.contract.CatalogContract;
-import com.herballife.main.catalog.detail.DetailCatalogActivity;
+import com.herballife.main.catalog.detail.view.activity.DetailCatalogActivity;
 import com.herballife.main.R;
 import com.herballife.main.model.Catalog;
 
