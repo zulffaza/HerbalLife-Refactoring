@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.herballife.main.penyakit.PenyakitActivity;
-import com.herballife.main.List_catalog;
+import com.herballife.main.catalog.CatalogActivity;
 import com.herballife.main.R;
 
 import butterknife.ButterKnife;
@@ -26,7 +26,7 @@ public class MainFragment extends Fragment {
 
     @OnClick(R.id.btn_catalog)
     public void moveToCatalogActivity() {
-        moveActivity(List_catalog.class);
+        moveActivity(CatalogActivity.class);
     }
 
     @OnClick(R.id.btn_help)

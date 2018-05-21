@@ -9,6 +9,7 @@ public interface PenyakitDataSource {
     interface LoadPenyakitCallback {
 
         void onLoadSuccess(List<Penyakit> penyakits);
+
         void onLoadFailed(String message);
     }
 
