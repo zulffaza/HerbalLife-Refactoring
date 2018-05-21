@@ -43,4 +43,7 @@
 
     <string name="main_exit_title">Exit</string>
     <string name="main_exit_message">Apakah anda benar-benar ingin keluar ?</string>
+
+    <string name="detail_penyakit_bahan_title">Bahan : </string>
+    <string name="detail_penyakit_tutorial_title">Cara Menggunakan : </string>
 </resources>

@@ -40,7 +40,7 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".Detail"
+            android:name=".penyakit.detail.DetailPenyakitActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
 

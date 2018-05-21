@@ -3,9 +3,6 @@ package com.herballife.main;
 import android.app.Activity;
 
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.SQLException;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -15,8 +12,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
+
+import com.herballife.main.penyakit.detail.DetailPenyakitActivity;
 
 
 public class Cari_Penyakit  extends Activity implements TextWatcher , OnClickListener{
@@ -52,7 +50,7 @@ public class Cari_Penyakit  extends Activity implements TextWatcher , OnClickLis
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
 				// TODO Auto-generated method stub
-				Intent tambah = new Intent(Cari_Penyakit.this,Detail.class);
+				Intent tambah = new Intent(Cari_Penyakit.this,DetailPenyakitActivity.class);
 				String a = edit.getText().toString();
 				tambah.putExtra("kirim_penyakit",a);
 				startActivity(tambah);

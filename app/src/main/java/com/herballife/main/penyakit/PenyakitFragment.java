@@ -12,7 +12,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.herballife.main.Cari_Penyakit;
-import com.herballife.main.Detail;
+import com.herballife.main.penyakit.detail.DetailPenyakitActivity;
 import com.herballife.main.R;
 import com.herballife.main.model.Penyakit;
 import com.herballife.main.penyakit.datasource.PenyakitDataSource;
@@ -38,7 +38,7 @@ public class PenyakitFragment extends Fragment {
     public void moveToDetail(int position) {
         Penyakit penyakit = mPenyakits.get(position);
 
-        Intent intent = new Intent(getContext(), Detail.class);
+        Intent intent = new Intent(getContext(), DetailPenyakitActivity.class);
         intent.putExtra(PENYAKIT_EXTRAS_NAME, penyakit);
 
         moveActivity(intent);
@@ -79,7 +79,7 @@ public class PenyakitFragment extends Fragment {
     }
 
     private void moveActivity(Intent intent) {
-        getContext().startActivity(intent);
+        startActivity(intent);
     }
 
     private class PenyakitRepositoryCallback implements PenyakitDataSource.LoadPenyakitCallback {
