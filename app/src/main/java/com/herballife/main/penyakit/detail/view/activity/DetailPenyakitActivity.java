@@ -1,11 +1,13 @@
-package com.herballife.main.penyakit.detail;
+package com.herballife.main.penyakit.detail.view.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.herballife.main.R;
 import com.herballife.main.model.Penyakit;
-import com.herballife.main.penyakit.PenyakitFragment;
+import com.herballife.main.penyakit.detail.presenter.DetailPenyakitPresenter;
+import com.herballife.main.penyakit.detail.view.fragment.DetailPenyakitFragment;
+import com.herballife.main.penyakit.view.fragment.PenyakitFragment;
 import com.herballife.main.util.ActivityUtils;
 
 public class DetailPenyakitActivity extends AppCompatActivity {
@@ -18,5 +20,7 @@ public class DetailPenyakitActivity extends AppCompatActivity {
         DetailPenyakitFragment detailPenyakitFragment = DetailPenyakitFragment.newInstance(penyakit);
         ActivityUtils.addFragmentToActivity(getSupportFragmentManager(),
                 detailPenyakitFragment, R.id.fl_detail_penyakit);
+
+        new DetailPenyakitPresenter(detailPenyakitFragment);
     }
 }
