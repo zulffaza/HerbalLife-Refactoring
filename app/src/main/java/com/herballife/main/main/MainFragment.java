@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.herballife.main.penyakit.PenyakitActivity;
-import com.herballife.main.catalog.CatalogActivity;
+import com.herballife.main.catalog.view.activity.CatalogActivity;
 import com.herballife.main.R;
 
 import butterknife.ButterKnife;

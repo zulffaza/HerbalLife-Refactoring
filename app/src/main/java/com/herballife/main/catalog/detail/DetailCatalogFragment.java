@@ -12,7 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.herballife.main.R;
-import com.herballife.main.catalog.CatalogFragment;
+import com.herballife.main.catalog.view.fragment.CatalogFragment;
 import com.herballife.main.model.Catalog;
 
 import butterknife.BindString;
