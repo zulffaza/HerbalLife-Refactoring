@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/home"
     android:gravity="center_horizontal"
-    tools:context=".main.MainActivity">
+    tools:context=".main.view.activity.MainActivity">
 
     <ImageButton
         android:id="@+id/btn_catalog"

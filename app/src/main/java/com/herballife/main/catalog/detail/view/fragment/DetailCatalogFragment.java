@@ -70,9 +70,7 @@ public class DetailCatalogFragment extends Fragment implements DetailCatalogCont
     @Override
     public void onStart() {
         super.onStart();
-
-        if (isCatalogSet())
-            showCatalog();
+        mPresenter.onStart(mCatalog);
     }
 
     @Override
@@ -85,11 +83,8 @@ public class DetailCatalogFragment extends Fragment implements DetailCatalogCont
         return getContext();
     }
 
-    private Boolean isCatalogSet() {
-        return mCatalog != null;
-    }
-
-    private void showCatalog() {
+    @Override
+    public void showCatalog() {
         String use = mUseTitle + mCatalog.getUse();
         Bitmap image = BitmapFactory.decodeByteArray(mCatalog.getImage(),
                 0, mCatalog.getImage().length);

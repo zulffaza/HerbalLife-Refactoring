@@ -1,9 +1,11 @@
-package com.herballife.main.main;
+package com.herballife.main.main.view.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.herballife.main.R;
+import com.herballife.main.main.presenter.MainPresenter;
+import com.herballife.main.main.view.fragment.MainFragment;
 import com.herballife.main.util.ActivityUtils;
 
 public class MainActivity extends AppCompatActivity {
@@ -16,5 +18,7 @@ public class MainActivity extends AppCompatActivity {
         MainFragment mainFragment = MainFragment.newInstance();
         ActivityUtils.addFragmentToActivity(getSupportFragmentManager(),
                 mainFragment, R.id.fl_main);
+
+        new MainPresenter(mainFragment);
     }
 }
