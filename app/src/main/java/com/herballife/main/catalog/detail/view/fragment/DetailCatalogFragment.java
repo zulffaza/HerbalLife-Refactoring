@@ -1,8 +1,10 @@
-package com.herballife.main.catalog.detail;
+package com.herballife.main.catalog.detail.view.fragment;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -12,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.herballife.main.R;
+import com.herballife.main.catalog.detail.contract.DetailCatalogContract;
 import com.herballife.main.catalog.view.fragment.CatalogFragment;
 import com.herballife.main.model.Catalog;
 
@@ -19,7 +22,7 @@ import butterknife.BindString;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class DetailCatalogFragment extends Fragment {
+public class DetailCatalogFragment extends Fragment implements DetailCatalogContract.View {
 
     @BindView(R.id.nama_tumbuhan)
     public TextView mName;
@@ -32,6 +35,8 @@ public class DetailCatalogFragment extends Fragment {
 
     @BindString(R.string.detail_catalog_use_title)
     public String mUseTitle;
+
+    private DetailCatalogContract.Presenter mPresenter;
 
     private Catalog mCatalog;
 
@@ -68,6 +73,16 @@ public class DetailCatalogFragment extends Fragment {
 
         if (isCatalogSet())
             showCatalog();
+    }
+
+    @Override
+    public void setPresenter(@NonNull DetailCatalogContract.Presenter presenter) {
+        mPresenter = presenter;
+    }
+
+    @Override
+    public Context getContextView() {
+        return getContext();
     }
 
     private Boolean isCatalogSet() {
