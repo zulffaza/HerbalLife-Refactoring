@@ -7,7 +7,9 @@ import android.os.Handler;
 import android.os.Message;
 import android.widget.ProgressBar;
 import android.widget.TextView;
- 
+
+import com.herballife.main.main.MainActivity;
+
 public class Splashscreen extends Activity
 {
 	 ProgressBar bar;

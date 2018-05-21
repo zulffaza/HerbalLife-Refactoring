@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.herballife.main">
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -12,69 +12,47 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity
-            android:name=".Splashscreen"
+            android:name=".splashscreen.view.activity.SplashScreenActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
-            android:name="com.herballife.main.catalog.CatalogActivity"
-            android:label="@string/catalog" >
-        </activity>
+            android:name=".main.MainActivity"
+            android:label="@string/app_name" />
+
         <activity
-            android:name="com.herballife.main.MainActivity"
-            android:label="@string/app_name" >
-        </activity>
-        <activity
-            android:name="com.herballife.main.Search"
+            android:name=".List_catalog"
             android:label="@string/app_name"
-            android:screenOrientation="portrait">
-        </activity>
+            android:screenOrientation="portrait" />
+
         <activity
-            android:name="com.herballife.main.List_catalog"
+            android:name=".penyakit.PenyakitActivity"
             android:label="@string/app_name"
-            android:screenOrientation="portrait">
-        </activity>
+            android:screenOrientation="portrait" />
+
         <activity
-            android:name="com.herballife.catalog.Adas"
-            android:label="@string/title_activity_adas"
-            android:screenOrientation="portrait" >
-        </activity>
-        <activity
-            android:name="com.herballife.catalog.Alang_alang"
+            android:name=".Detail"
             android:label="@string/app_name"
-            android:screenOrientation="portrait">
-        </activity>
+            android:screenOrientation="portrait" />
+
         <activity
-            android:name="com.herballife.catalog.Apel"
+            android:name=".Detail_katalog"
             android:label="@string/app_name"
-            android:screenOrientation="portrait">
-        </activity>
+            android:screenOrientation="portrait" />
+
         <activity
-            android:name="com.herballife.main.List"
+            android:name=".Cari_Penyakit"
             android:label="@string/app_name"
-            android:screenOrientation="portrait">
-        </activity>
-        <activity
-            android:name="com.herballife.main.Detail"
-            android:label="@string/app_name"
-            android:screenOrientation="portrait">
-        </activity>
-        <activity
-            android:name="com.herballife.main.Detail_katalog"
-            android:label="@string/app_name"
-            android:screenOrientation="portrait">
-        </activity>
-        <activity
-            android:name="com.herballife.main.Cari_Penyakit"
-            android:label="@string/app_name"
-            android:screenOrientation="portrait">
-        </activity>
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

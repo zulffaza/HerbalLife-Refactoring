@@ -1,4 +1,4 @@
-package com.herballife.main;
+package com.herballife.main.main;
 
 
 import android.app.Activity;
@@ -9,6 +9,10 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.View;
 import android.view.View.OnClickListener;
+
+import com.herballife.main.List;
+import com.herballife.main.List_catalog;
+import com.herballife.main.R;
 
 public class MainActivity extends Activity implements OnClickListener
 {
@@ -37,11 +41,11 @@ public class MainActivity extends Activity implements OnClickListener
 		{
 		
 		case R.id.btn_search: 
-		Intent btn_search = new Intent(this, List.class ); 
+		Intent btn_search = new Intent(this, List.class );
 		startActivity(btn_search); 
 		break; 
 		case R.id.btn_catalog: 
-		Intent btn_catalog = new Intent(this, List_catalog.class ); 
+		Intent btn_catalog = new Intent(this, List_catalog.class );
 		startActivity(btn_catalog);
 		break;		 
 		case R.id.btn_help:
