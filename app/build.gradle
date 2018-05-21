@@ -1,12 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
     defaultConfig {
         applicationId "com.herballife.main"
-        minSdkVersion 15
-        targetSdkVersion 25
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -21,13 +22,22 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+    androidTestCompile("com.android.support.test.espresso:espresso-core:$rootProject.ext.espressoVersion", {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:25.3.1'
-    compile 'com.android.support.constraint:constraint-layout:1.0.0-beta4'
-    compile 'com.android.support:design:25.3.1'
-    testCompile 'junit:junit:4.12'
 
-    compile 'com.readystatesoftware.sqliteasset:sqliteassethelper:+'
+    // Support Dependency
+    compile "com.android.support:appcompat-v7:$rootProject.ext.supportLibraryVersion"
+    compile "com.android.support:design:$rootProject.ext.supportLibraryVersion"
+    compile "com.android.support.constraint:constraint-layout:$rootProject.ext.constraintLayoutVersion"
+
+    //BindView
+    compile "com.jakewharton:butterknife:$rootProject.butterknifeVersion"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.butterknifeVersion"
+
+    // SQLite Helper Dependency
+    compile "com.readystatesoftware.sqliteasset:sqliteassethelper:$rootProject.ext.sqliteassethelperVersion"
+
+    // Unit Test Dependency
+    testCompile "junit:junit:$rootProject.ext.junitVersion"
 }
