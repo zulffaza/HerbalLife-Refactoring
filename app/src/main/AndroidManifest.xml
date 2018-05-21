@@ -50,7 +50,7 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".Cari_Penyakit"
+            android:name=".penyakit.search.PenyakitSearchActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
     </application>

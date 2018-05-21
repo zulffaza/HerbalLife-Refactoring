@@ -11,7 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.herballife.main.Cari_Penyakit;
+import com.herballife.main.penyakit.search.PenyakitSearchActivity;
 import com.herballife.main.penyakit.detail.DetailPenyakitActivity;
 import com.herballife.main.R;
 import com.herballife.main.model.Penyakit;
@@ -46,7 +46,7 @@ public class PenyakitFragment extends Fragment {
 
     @OnClick(R.id.tombol_cari)
     public void moveToSearch() {
-        Intent intent = new Intent(getContext(), Cari_Penyakit.class);
+        Intent intent = new Intent(getContext(), PenyakitSearchActivity.class);
         moveActivity(intent);
     }
 
