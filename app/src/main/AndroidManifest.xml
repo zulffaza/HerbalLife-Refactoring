@@ -30,7 +30,7 @@
             android:label="@string/app_name" />
 
         <activity
-            android:name=".List_catalog"
+            android:name=".catalog.CatalogActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
 

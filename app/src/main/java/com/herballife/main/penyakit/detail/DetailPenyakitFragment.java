@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.herballife.main.List_catalog;
+import com.herballife.main.catalog.CatalogActivity;
 import com.herballife.main.R;
 import com.herballife.main.model.Penyakit;
 import com.herballife.main.penyakit.PenyakitFragment;
@@ -32,7 +32,7 @@ public class DetailPenyakitFragment extends Fragment {
 
     @OnClick(R.id.button1)
     public void moveToCatalog() {
-        Intent intent = new Intent(getContext(), List_catalog.class);
+        Intent intent = new Intent(getContext(), CatalogActivity.class);
         startActivity(intent);
     }
 
