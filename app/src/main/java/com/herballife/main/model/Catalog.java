@@ -27,6 +27,8 @@ public class Catalog implements Parcelable {
         id = in.readInt();
         name = in.readString();
         use = in.readString();
+
+        image = new byte[in.readInt()];
         in.readByteArray(image);
     }
 
@@ -56,6 +58,8 @@ public class Catalog implements Parcelable {
         dest.writeInt(id);
         dest.writeString(name);
         dest.writeString(use);
+
+        dest.writeInt(image.length);
         dest.writeByteArray(image);
     }
 }

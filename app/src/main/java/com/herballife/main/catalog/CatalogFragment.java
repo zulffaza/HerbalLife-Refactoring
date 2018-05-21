@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.herballife.main.Detail_katalog;
+import com.herballife.main.catalog.detail.DetailCatalogActivity;
 import com.herballife.main.R;
 import com.herballife.main.catalog.datasource.CatalogDataSource;
 import com.herballife.main.catalog.datasource.CatalogRepository;
@@ -36,7 +37,9 @@ public class CatalogFragment extends Fragment {
     public void moveToDetail(int position) {
         Catalog catalog = mCatalogs.get(position);
 
-        Intent intent = new Intent(getContext(), Detail_katalog.class);
+        Log.d(CATALOG_EXTRAS_NAME, catalog.toString());
+
+        Intent intent = new Intent(getContext(), DetailCatalogActivity.class);
         intent.putExtra(CATALOG_EXTRAS_NAME, catalog);
 
         moveActivity(intent);
