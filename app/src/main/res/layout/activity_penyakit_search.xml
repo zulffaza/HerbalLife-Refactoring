@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".penyakit.search.PenyakitSearchActivity">
+    tools:context=".penyakit.search.view.activity.PenyakitSearchActivity">
 
     <FrameLayout
         android:id="@+id/fl_penyakit_search"

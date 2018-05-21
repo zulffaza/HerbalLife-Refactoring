@@ -18,7 +18,6 @@ import com.herballife.main.catalog.detail.view.activity.DetailCatalogActivity;
 import com.herballife.main.R;
 import com.herballife.main.model.Catalog;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -34,8 +33,7 @@ public class CatalogFragment extends Fragment implements CatalogContract.View {
 
     @OnItemClick(R.id.list_tumbuhan)
     public void moveToDetail(int position) {
-        mPresenter.moveToDetailActivity(
-                mCatalogs.get(position));
+        mPresenter.moveToDetailActivity(mCatalogs.get(position));
     }
 
     public static CatalogFragment newInstance() {
@@ -63,7 +61,7 @@ public class CatalogFragment extends Fragment implements CatalogContract.View {
 
     @Override
     public void showCatalogs(List<Catalog> catalogs) {
-        List<String> names = getCatalogNames(catalogs);
+        List<String> names = mPresenter.getCatalogNames(catalogs);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(
                 getContext(), android.R.layout.simple_list_item_1, names);
 
@@ -92,15 +90,6 @@ public class CatalogFragment extends Fragment implements CatalogContract.View {
     @Override
     public Context getContextView() {
         return getContext();
-    }
-
-    private List<String> getCatalogNames(List<Catalog> catalogs) {
-        List<String> names = new ArrayList<>();
-
-        for (Catalog catalog : catalogs)
-            names.add(catalog.getName());
-
-        return names;
     }
 
     private void moveActivity(Intent intent) {

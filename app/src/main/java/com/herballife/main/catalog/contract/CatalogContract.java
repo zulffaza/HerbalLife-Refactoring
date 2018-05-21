@@ -19,6 +19,8 @@ public interface CatalogContract {
 
     interface Presenter extends BasePresenter {
 
+        List<String> getCatalogNames(List<Catalog> catalogs);
+
         void moveToDetailActivity(Catalog catalog);
     }
 }

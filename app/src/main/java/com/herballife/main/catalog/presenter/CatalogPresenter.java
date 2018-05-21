@@ -5,6 +5,7 @@ import com.herballife.main.catalog.datasource.CatalogDataSource;
 import com.herballife.main.catalog.datasource.CatalogRepository;
 import com.herballife.main.model.Catalog;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CatalogPresenter implements CatalogContract.Presenter {
@@ -18,6 +19,16 @@ public class CatalogPresenter implements CatalogContract.Presenter {
         mView = view;
 
         mView.setPresenter(this);
+    }
+
+    @Override
+    public List<String> getCatalogNames(List<Catalog> catalogs) {
+        List<String> names = new ArrayList<>();
+
+        for (Catalog catalog : catalogs)
+            names.add(catalog.getName());
+
+        return names;
     }
 
     @Override

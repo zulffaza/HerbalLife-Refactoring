@@ -2,7 +2,6 @@ package com.herballife.main.catalog.detail.view.fragment;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -86,8 +85,7 @@ public class DetailCatalogFragment extends Fragment implements DetailCatalogCont
     @Override
     public void showCatalog() {
         String use = mUseTitle + mCatalog.getUse();
-        Bitmap image = BitmapFactory.decodeByteArray(mCatalog.getImage(),
-                0, mCatalog.getImage().length);
+        Bitmap image = mPresenter.createBitmapFromByteArray(mCatalog.getImage());
 
         mName.setText(mCatalog.getName());
         mUse.setText(use);

@@ -50,7 +50,7 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".penyakit.search.PenyakitSearchActivity"
+            android:name=".penyakit.search.view.activity.PenyakitSearchActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
     </application>
