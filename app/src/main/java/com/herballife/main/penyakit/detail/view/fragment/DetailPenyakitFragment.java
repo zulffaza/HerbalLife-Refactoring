@@ -1,6 +1,5 @@
 package com.herballife.main.penyakit.detail.view.fragment;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -44,7 +43,7 @@ public class DetailPenyakitFragment extends Fragment implements DetailPenyakitCo
     @BindString(R.string.detail_penyakit_tutorial_title)
     public String mTutorialTitle;
 
-    private DetailPenyakitContract.Presenter mPresenter;
+    private DetailPenyakitContract.ViewModel mPresenter;
 
     private Penyakit mPenyakit;
 
@@ -98,12 +97,8 @@ public class DetailPenyakitFragment extends Fragment implements DetailPenyakitCo
     }
 
     @Override
-    public void setPresenter(@NonNull DetailPenyakitContract.Presenter presenter) {
-        mPresenter = presenter;
+    public void setViewModel(@NonNull DetailPenyakitContract.ViewModel viewModel) {
+        mPresenter = viewModel;
     }
 
-    @Override
-    public Context getContextView() {
-        return getContext();
-    }
 }

@@ -2,13 +2,13 @@ package com.herballife.main.main.presenter;
 
 import com.herballife.main.main.contract.MainContract;
 
-public class MainPresenter implements MainContract.Presenter {
+public class MainViewModel implements MainContract.ViewModel {
 
     private final MainContract.View mView;
 
-    public MainPresenter(MainContract.View view) {
+    public MainViewModel(MainContract.View view) {
         mView = view;
-        mView.setPresenter(this);
+        mView.setViewModel(this);
     }
 
     @Override

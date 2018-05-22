@@ -1,6 +1,6 @@
 package com.herballife.main.catalog.contract;
 
-import com.herballife.main.base.BasePresenter;
+import com.herballife.main.base.BaseViewModel;
 import com.herballife.main.base.BaseView;
 import com.herballife.main.model.Catalog;
 
@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface CatalogContract {
 
-    interface View extends BaseView<Presenter> {
+    interface View extends BaseView<ViewModel> {
 
         void showCatalogs(List<String> catalogNames);
 
@@ -17,7 +17,7 @@ public interface CatalogContract {
         void moveToDetailActivity(Catalog catalog);
     }
 
-    interface Presenter extends BasePresenter {
+    interface ViewModel extends BaseViewModel {
 
         void moveToDetailActivity(Integer position);
     }

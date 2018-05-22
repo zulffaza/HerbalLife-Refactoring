@@ -9,9 +9,9 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class SplashScreenHandler extends Handler {
 
-    private SplashScreenContract.Presenter mPresenter;
+    private SplashScreenContract.ViewModel mPresenter;
 
-    public SplashScreenHandler(SplashScreenContract.Presenter presenter) {
+    public SplashScreenHandler(SplashScreenContract.ViewModel presenter) {
         mPresenter = presenter;
     }
 

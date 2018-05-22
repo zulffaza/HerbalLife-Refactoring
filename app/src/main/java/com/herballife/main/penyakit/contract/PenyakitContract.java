@@ -1,6 +1,6 @@
 package com.herballife.main.penyakit.contract;
 
-import com.herballife.main.base.BasePresenter;
+import com.herballife.main.base.BaseViewModel;
 import com.herballife.main.base.BaseView;
 import com.herballife.main.model.Penyakit;
 
@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface PenyakitContract {
 
-    interface View extends BaseView<Presenter> {
+    interface View extends BaseView<ViewModel> {
 
         void showPenyakits(List<String> penyakitNames);
 
@@ -19,7 +19,7 @@ public interface PenyakitContract {
         void moveToSearchActivity();
     }
 
-    interface Presenter extends BasePresenter {
+    interface ViewModel extends BaseViewModel {
 
         void moveToDetailActivity(Integer position);
 

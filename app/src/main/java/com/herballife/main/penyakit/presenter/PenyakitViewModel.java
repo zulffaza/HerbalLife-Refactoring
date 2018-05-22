@@ -8,7 +8,7 @@ import com.herballife.main.penyakit.datasource.PenyakitRepository;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PenyakitPresenter implements PenyakitContract.Presenter {
+public class PenyakitViewModel implements PenyakitContract.ViewModel {
 
     private PenyakitRepository mPenyakitRepository;
 
@@ -16,11 +16,11 @@ public class PenyakitPresenter implements PenyakitContract.Presenter {
 
     private List<Penyakit> mPenyakits;
 
-    public PenyakitPresenter(PenyakitRepository penyakitRepository, PenyakitContract.View view) {
+    public PenyakitViewModel(PenyakitRepository penyakitRepository, PenyakitContract.View view) {
         mPenyakitRepository = penyakitRepository;
         mView = view;
 
-        mView.setPresenter(this);
+        mView.setViewModel(this);
     }
 
     @Override
