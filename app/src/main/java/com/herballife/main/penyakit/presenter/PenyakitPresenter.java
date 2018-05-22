@@ -14,6 +14,8 @@ public class PenyakitPresenter implements PenyakitContract.Presenter {
 
     private PenyakitContract.View mView;
 
+    private List<Penyakit> mPenyakits;
+
     public PenyakitPresenter(PenyakitRepository penyakitRepository, PenyakitContract.View view) {
         mPenyakitRepository = penyakitRepository;
         mView = view;
@@ -22,18 +24,8 @@ public class PenyakitPresenter implements PenyakitContract.Presenter {
     }
 
     @Override
-    public List<String> getPenyakitNames(List<Penyakit> penyakits) {
-        List<String> names = new ArrayList<>();
-
-        for (Penyakit penyakit : penyakits)
-            names.add(penyakit.getName());
-
-        return names;
-    }
-
-    @Override
-    public void moveToDetailActivity(Penyakit penyakit) {
-        mView.moveToDetailActivity(penyakit);
+    public void moveToDetailActivity(Integer position) {
+        mView.moveToDetailActivity(mPenyakits.get(position));
     }
 
     @Override
@@ -75,12 +67,24 @@ public class PenyakitPresenter implements PenyakitContract.Presenter {
 
         @Override
         public void onLoadSuccess(List<Penyakit> penyakits) {
-            mView.showPenyakit(penyakits);
+            List<String> penyakitNames = getPenyakitNames(penyakits);
+            mView.showPenyakits(penyakitNames);
+
+            mPenyakits = penyakits;
         }
 
         @Override
         public void onLoadFailed(String message) {
             mView.showToast(message);
+        }
+
+        private List<String> getPenyakitNames(List<Penyakit> penyakits) {
+            List<String> names = new ArrayList<>();
+
+            for (Penyakit penyakit : penyakits)
+                names.add(penyakit.getName());
+
+            return names;
         }
     }
 }

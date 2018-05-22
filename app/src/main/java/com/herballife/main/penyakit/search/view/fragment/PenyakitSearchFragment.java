@@ -43,8 +43,6 @@ public class PenyakitSearchFragment extends Fragment implements PenyakitSearchCo
 
     private PenyakitSearchContract.Presenter mPresenter;
 
-    private List<Penyakit> mPenyakits;
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -64,13 +62,11 @@ public class PenyakitSearchFragment extends Fragment implements PenyakitSearchCo
     }
 
     @Override
-    public void showPenyakits(List<Penyakit> penyakits) {
-        List<String> names = mPresenter.getPenyakitNames(penyakits);
+    public void showPenyakits(List<String> penyakitNames) {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(
-                getContext(), android.R.layout.simple_dropdown_item_1line, names);
+                getContext(), android.R.layout.simple_dropdown_item_1line, penyakitNames);
 
         mListPenyakit.setAdapter(adapter);
-        mPenyakits = penyakits;
     }
 
     @Override
@@ -79,8 +75,8 @@ public class PenyakitSearchFragment extends Fragment implements PenyakitSearchCo
     }
 
     @Override
-    public void showSelection(String penyakit) {
-        mSelectionPenyakit.setText(penyakit);
+    public void showSelection(String name) {
+        mSelectionPenyakit.setText(name);
     }
 
     @Override
@@ -114,7 +110,8 @@ public class PenyakitSearchFragment extends Fragment implements PenyakitSearchCo
 
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
-            mPresenter.changeSelection(mListPenyakit.getText().toString());
+            String name = mListPenyakit.getText().toString();
+            mPresenter.changeSelection(name);
         }
 
         @Override
@@ -127,10 +124,8 @@ public class PenyakitSearchFragment extends Fragment implements PenyakitSearchCo
 
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            Penyakit penyakit = mPresenter.getPenyakitFromName(mPenyakits,
-                    mListPenyakit.getText().toString());
-
-            mPresenter.moveIntoDetailPenyakit(penyakit);
+            String name = mListPenyakit.getText().toString();
+            mPresenter.moveIntoDetailPenyakit(name);
         }
     }
 }

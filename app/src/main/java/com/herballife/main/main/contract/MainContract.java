@@ -7,7 +7,9 @@ public interface MainContract {
 
     interface View extends BaseView<Presenter> {
 
-        void moveActivity(Class destinationActivity);
+        void moveToSearchActivity();
+
+        void moveToCatalogActivity();
 
         void showHelpPopup();
 

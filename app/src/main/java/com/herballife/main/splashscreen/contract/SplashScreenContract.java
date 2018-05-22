@@ -1,28 +1,34 @@
 package com.herballife.main.splashscreen.contract;
 
-import android.os.Handler;
-
 import com.herballife.main.base.BasePresenter;
 import com.herballife.main.base.BaseView;
+
+import java.util.concurrent.atomic.AtomicInteger;
 
 public interface SplashScreenContract {
 
     interface View extends BaseView<Presenter> {
 
-        void setRunningIsFalse();
+        void setProgressBarValue(Integer progress);
 
-        void setProgressBarInitialValue();
+        void sendMessage(AtomicInteger progress);
 
-        void setRunningIsTrue();
+        void setProgressText(String text);
 
-        void startBackgroundProcess();
+        void incrementProgressBar(Integer progress);
 
         void moveToMainActivity();
     }
 
     interface Presenter extends BasePresenter {
 
-        void handleProgressBar(Handler handler, Boolean isRunning) throws InterruptedException;
+        void onStart(Runnable runnable);
+
+        void doBackgroundProcess() throws InterruptedException;
+
+        void setProgressText(AtomicInteger progress);
+
+        void updateProgressBar();
 
         void moveToMainActivity();
     }

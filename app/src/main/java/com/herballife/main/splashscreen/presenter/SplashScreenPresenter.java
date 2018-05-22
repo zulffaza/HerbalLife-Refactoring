@@ -1,8 +1,5 @@
 package com.herballife.main.splashscreen.presenter;
 
-import android.os.Handler;
-import android.os.Message;
-
 import com.herballife.main.splashscreen.contract.SplashScreenContract;
 
 import java.util.concurrent.atomic.AtomicInteger;
@@ -10,10 +7,16 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class SplashScreenPresenter implements SplashScreenContract.Presenter {
 
     private static final Integer INITIAL_PROGRESS = 0;
+
     private static final Integer MAX_PROGRESS = 5;
+
     private static final Integer SLEEP_TIME = 1000;
 
+    private static final Integer INCREMENT_PROGRESS = 20;
+
     private final SplashScreenContract.View mView;
+
+    private Boolean mIsRunning;
 
     public SplashScreenPresenter(SplashScreenContract.View view) {
         this.mView = view;
@@ -21,13 +24,24 @@ public class SplashScreenPresenter implements SplashScreenContract.Presenter {
     }
 
     @Override
-    public void handleProgressBar(Handler handler, Boolean isRunning) throws InterruptedException {
+    public void doBackgroundProcess() throws InterruptedException {
         AtomicInteger progress = new AtomicInteger(INITIAL_PROGRESS);
 
-        for (Integer i = INITIAL_PROGRESS; i < MAX_PROGRESS && isRunning; i++) {
+        for (Integer i = INITIAL_PROGRESS; i < MAX_PROGRESS && mIsRunning; i++) {
             Thread.sleep(SLEEP_TIME);
-            handler.sendMessage(createMessage(handler, progress));
+            mView.sendMessage(progress);
         }
+    }
+
+    @Override
+    public void setProgressText(AtomicInteger progress) {
+        String text = progress.addAndGet(INCREMENT_PROGRESS) + "% Completed";
+        mView.setProgressText(text);
+    }
+
+    @Override
+    public void updateProgressBar() {
+        mView.incrementProgressBar(INCREMENT_PROGRESS);
     }
 
     @Override
@@ -37,14 +51,20 @@ public class SplashScreenPresenter implements SplashScreenContract.Presenter {
 
     @Override
     public void onCreate() {
-        mView.setRunningIsFalse();
+        mIsRunning = Boolean.FALSE;
     }
 
     @Override
     public void onStart() {
-        mView.setProgressBarInitialValue();
-        mView.setRunningIsTrue();
-        mView.startBackgroundProcess();
+        // Do nothing
+    }
+
+    @Override
+    public void onStart(Runnable runnable) {
+        mIsRunning = Boolean.TRUE;
+        mView.setProgressBarValue(INITIAL_PROGRESS);
+
+        startBackgroundProcess(runnable);
     }
 
     @Override
@@ -59,7 +79,7 @@ public class SplashScreenPresenter implements SplashScreenContract.Presenter {
 
     @Override
     public void onStop() {
-        mView.setRunningIsFalse();
+        mIsRunning = Boolean.FALSE;
     }
 
     @Override
@@ -67,10 +87,7 @@ public class SplashScreenPresenter implements SplashScreenContract.Presenter {
         // Do nothing
     }
 
-    private Message createMessage(Handler handler, AtomicInteger progress) {
-        Message message = handler.obtainMessage();
-        message.obj = progress;
-
-        return message;
+    private void startBackgroundProcess(Runnable runnable) {
+        new Thread(runnable).start();
     }
 }

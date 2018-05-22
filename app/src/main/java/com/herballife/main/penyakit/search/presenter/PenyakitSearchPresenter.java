@@ -14,6 +14,8 @@ public class PenyakitSearchPresenter implements PenyakitSearchContract.Presenter
 
     private PenyakitRepository mPenyakitRepository;
 
+    private List<Penyakit> mPenyakits;
+
     public PenyakitSearchPresenter(PenyakitRepository penyakitRepository,
                                    PenyakitSearchContract.View view) {
         mPenyakitRepository = penyakitRepository;
@@ -23,32 +25,14 @@ public class PenyakitSearchPresenter implements PenyakitSearchContract.Presenter
     }
 
     @Override
-    public List<String> getPenyakitNames(List<Penyakit> penyakits) {
-        List<String> names = new ArrayList<>();
-
-        for (Penyakit penyakit : penyakits)
-            names.add(penyakit.getName());
-
-        return names;
+    public void changeSelection(String name) {
+        mView.showSelection(name);
     }
 
     @Override
-    public void changeSelection(String penyakit) {
-        mView.showSelection(penyakit);
-    }
+    public void moveIntoDetailPenyakit(String name) {
+        Penyakit penyakit = getPenyakitFromName(name);
 
-    @Override
-    public Penyakit getPenyakitFromName(List<Penyakit> penyakits, String name) {
-        for (Penyakit penyakit : penyakits) {
-            if (penyakit.getName().equals(name))
-                return penyakit;
-        }
-
-        return null;
-    }
-
-    @Override
-    public void moveIntoDetailPenyakit(Penyakit penyakit) {
         if (isFound(penyakit))
             mView.moveIntoDetailPenyakit(penyakit);
     }
@@ -83,6 +67,15 @@ public class PenyakitSearchPresenter implements PenyakitSearchContract.Presenter
         // Do nothing
     }
 
+    private Penyakit getPenyakitFromName(String name) {
+        for (Penyakit penyakit : mPenyakits) {
+            if (penyakit.getName().equals(name))
+                return penyakit;
+        }
+
+        return null;
+    }
+
     private Boolean isFound(Penyakit penyakit) {
         return penyakit != null;
     }
@@ -91,12 +84,24 @@ public class PenyakitSearchPresenter implements PenyakitSearchContract.Presenter
 
         @Override
         public void onLoadSuccess(List<Penyakit> penyakits) {
-            mView.showPenyakits(penyakits);
+            List<String> penyakitNames = getPenyakitNames(penyakits);
+            mView.showPenyakits(penyakitNames);
+
+            mPenyakits = penyakits;
         }
 
         @Override
         public void onLoadFailed(String message) {
             mView.showToast(message);
+        }
+
+        private List<String> getPenyakitNames(List<Penyakit> penyakits) {
+            List<String> names = new ArrayList<>();
+
+            for (Penyakit penyakit : penyakits)
+                names.add(penyakit.getName());
+
+            return names;
         }
     }
 }

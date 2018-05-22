@@ -12,8 +12,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.herballife.main.catalog.view.activity.CatalogActivity;
 import com.herballife.main.main.contract.MainContract;
 import com.herballife.main.R;
+import com.herballife.main.penyakit.view.activity.PenyakitActivity;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -21,12 +23,12 @@ import butterknife.OnClick;
 public class MainFragment extends Fragment implements MainContract.View {
 
     @OnClick(R.id.btn_search)
-    public void moveToSearchActivity() {
+    public void moveToSearch() {
         mPresenter.moveToSearchActivity();
     }
 
     @OnClick(R.id.btn_catalog)
-    public void moveToCatalogActivity() {
+    public void moveToCatalog() {
         mPresenter.moveToCatalogActivity();
     }
 
@@ -56,9 +58,13 @@ public class MainFragment extends Fragment implements MainContract.View {
     }
 
     @Override
-    public void moveActivity(Class destinationActivity) {
-        Intent intent = new Intent(getContext(), destinationActivity);
-        startActivity(intent);
+    public void moveToSearchActivity() {
+        moveActivity(PenyakitActivity.class);
+    }
+
+    @Override
+    public void moveToCatalogActivity() {
+        moveActivity(CatalogActivity.class);
     }
 
     @Override
@@ -71,6 +77,7 @@ public class MainFragment extends Fragment implements MainContract.View {
         builder.setMessage(message)
                 .setCancelable(false)
                 .setPositiveButton(ok, new DialogInterface.OnClickListener() {
+
                     public void onClick(DialogInterface dialog, int id) {
                         dialog.dismiss();
                     }
@@ -118,5 +125,10 @@ public class MainFragment extends Fragment implements MainContract.View {
     @Override
     public Context getContextView() {
         return getContext();
+    }
+
+    private void moveActivity(Class destinationActivity) {
+        Intent intent = new Intent(getContext(), destinationActivity);
+        startActivity(intent);
     }
 }

@@ -10,7 +10,7 @@ public interface CatalogContract {
 
     interface View extends BaseView<Presenter> {
 
-        void showCatalogs(List<Catalog> catalogs);
+        void showCatalogs(List<String> catalogNames);
 
         void showToast(String message);
 
@@ -19,8 +19,6 @@ public interface CatalogContract {
 
     interface Presenter extends BasePresenter {
 
-        List<String> getCatalogNames(List<Catalog> catalogs);
-
-        void moveToDetailActivity(Catalog catalog);
+        void moveToDetailActivity(Integer position);
     }
 }

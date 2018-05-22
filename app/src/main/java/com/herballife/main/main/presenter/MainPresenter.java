@@ -1,8 +1,6 @@
 package com.herballife.main.main.presenter;
 
-import com.herballife.main.catalog.view.activity.CatalogActivity;
 import com.herballife.main.main.contract.MainContract;
-import com.herballife.main.penyakit.view.activity.PenyakitActivity;
 
 public class MainPresenter implements MainContract.Presenter {
 
@@ -15,12 +13,12 @@ public class MainPresenter implements MainContract.Presenter {
 
     @Override
     public void moveToSearchActivity() {
-        mView.moveActivity(PenyakitActivity.class);
+        mView.moveToSearchActivity();
     }
 
     @Override
     public void moveToCatalogActivity() {
-        mView.moveActivity(CatalogActivity.class);
+        mView.moveToCatalogActivity();
     }
 
     @Override

@@ -2,6 +2,7 @@ package com.herballife.main.catalog.detail.view.fragment;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -22,6 +23,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class DetailCatalogFragment extends Fragment implements DetailCatalogContract.View {
+
+    private static final Integer OFFSET = 0;
 
     @BindView(R.id.nama_tumbuhan)
     public TextView mName;
@@ -75,7 +78,8 @@ public class DetailCatalogFragment extends Fragment implements DetailCatalogCont
     @Override
     public void showCatalog() {
         String use = mUseTitle + mCatalog.getUse();
-        Bitmap image = mPresenter.createBitmapFromByteArray(mCatalog.getImage());
+        Bitmap image = BitmapFactory.decodeByteArray(mCatalog.getImage(),
+                OFFSET, mCatalog.getImage().length);
 
         mName.setText(mCatalog.getName());
         mUse.setText(use);

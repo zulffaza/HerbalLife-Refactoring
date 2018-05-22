@@ -1,8 +1,5 @@
 package com.herballife.main.catalog.detail.presenter;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-
 import com.herballife.main.catalog.detail.contract.DetailCatalogContract;
 import com.herballife.main.model.Catalog;
 
@@ -13,11 +10,6 @@ public class DetailCatalogPresenter implements DetailCatalogContract.Presenter {
     public DetailCatalogPresenter(DetailCatalogContract.View view) {
         mView = view;
         mView.setPresenter(this);
-    }
-
-    @Override
-    public Bitmap createBitmapFromByteArray(byte[] image) {
-        return BitmapFactory.decodeByteArray(image, 0, image.length);
     }
 
     @Override

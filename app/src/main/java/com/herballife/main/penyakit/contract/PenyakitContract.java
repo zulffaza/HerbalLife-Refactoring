@@ -10,7 +10,7 @@ public interface PenyakitContract {
 
     interface View extends BaseView<Presenter> {
 
-        void showPenyakit(List<Penyakit> penyakits);
+        void showPenyakits(List<String> penyakitNames);
 
         void showToast(String message);
 
@@ -21,9 +21,7 @@ public interface PenyakitContract {
 
     interface Presenter extends BasePresenter {
 
-        List<String> getPenyakitNames(List<Penyakit> penyakits);
-
-        void moveToDetailActivity(Penyakit penyakit);
+        void moveToDetailActivity(Integer position);
 
         void moveToSearchActivity();
     }

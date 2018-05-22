@@ -35,7 +35,7 @@ public class PenyakitFragment extends Fragment implements PenyakitContract.View 
 
     @OnItemClick(R.id.listpenyakit)
     public void moveToDetail(int position) {
-        mPresenter.moveToDetailActivity(mPenyakits.get(position));
+        mPresenter.moveToDetailActivity(position);
     }
 
     @OnClick(R.id.tombol_cari)
@@ -48,8 +48,6 @@ public class PenyakitFragment extends Fragment implements PenyakitContract.View 
     }
 
     private PenyakitContract.Presenter mPresenter;
-
-    private List<Penyakit> mPenyakits;
 
     @Nullable
     @Override
@@ -67,13 +65,11 @@ public class PenyakitFragment extends Fragment implements PenyakitContract.View 
     }
 
     @Override
-    public void showPenyakit(List<Penyakit> penyakits) {
-        List<String> names = mPresenter.getPenyakitNames(penyakits);
+    public void showPenyakits(List<String> penyakitNames) {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(
-                getContext(), android.R.layout.simple_list_item_1, names);
+                getContext(), android.R.layout.simple_list_item_1, penyakitNames);
 
         mListPenyakit.setAdapter(adapter);
-        mPenyakits = penyakits;
     }
 
     @Override

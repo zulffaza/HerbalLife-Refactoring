@@ -14,6 +14,8 @@ public class CatalogPresenter implements CatalogContract.Presenter {
 
     private final CatalogRepository mCatalogRepository;
 
+    private List<Catalog> mCatalogs;
+
     public CatalogPresenter(CatalogRepository catalogRepository, CatalogContract.View view) {
         mCatalogRepository = catalogRepository;
         mView = view;
@@ -22,18 +24,8 @@ public class CatalogPresenter implements CatalogContract.Presenter {
     }
 
     @Override
-    public List<String> getCatalogNames(List<Catalog> catalogs) {
-        List<String> names = new ArrayList<>();
-
-        for (Catalog catalog : catalogs)
-            names.add(catalog.getName());
-
-        return names;
-    }
-
-    @Override
-    public void moveToDetailActivity(Catalog catalog) {
-        mView.moveToDetailActivity(catalog);
+    public void moveToDetailActivity(Integer position) {
+        mView.moveToDetailActivity(mCatalogs.get(position));
     }
 
     @Override
@@ -70,12 +62,24 @@ public class CatalogPresenter implements CatalogContract.Presenter {
 
         @Override
         public void onLoadSuccess(List<Catalog> catalogs) {
-            mView.showCatalogs(catalogs);
+            List<String> catalogNames = getCatalogNames(catalogs);
+            mView.showCatalogs(catalogNames);
+
+            mCatalogs = catalogs;
         }
 
         @Override
         public void onLoadFailed(String message) {
             mView.showToast(message);
+        }
+
+        private List<String> getCatalogNames(List<Catalog> catalogs) {
+            List<String> names = new ArrayList<>();
+
+            for (Catalog catalog : catalogs)
+                names.add(catalog.getName());
+
+            return names;
         }
     }
 }

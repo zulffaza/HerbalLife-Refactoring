@@ -10,23 +10,19 @@ public interface PenyakitSearchContract {
 
     interface View extends BaseView<Presenter> {
 
-        void showPenyakits(List<Penyakit> penyakits);
+        void showPenyakits(List<String> penyakitNames);
 
         void showToast(String message);
 
-        void showSelection(String penyakit);
+        void showSelection(String name);
 
         void moveIntoDetailPenyakit(Penyakit penyakit);
     }
 
     interface Presenter extends BasePresenter {
 
-        List<String> getPenyakitNames(List<Penyakit> penyakits);
+        void changeSelection(String name);
 
-        void changeSelection(String penyakit);
-
-        Penyakit getPenyakitFromName(List<Penyakit> penyakits, String name);
-
-        void moveIntoDetailPenyakit(Penyakit penyakit);
+        void moveIntoDetailPenyakit(String name);
     }
 }

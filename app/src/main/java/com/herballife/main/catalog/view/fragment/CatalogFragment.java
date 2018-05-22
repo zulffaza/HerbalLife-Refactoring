@@ -33,7 +33,7 @@ public class CatalogFragment extends Fragment implements CatalogContract.View {
 
     @OnItemClick(R.id.list_tumbuhan)
     public void moveToDetail(int position) {
-        mPresenter.moveToDetailActivity(mCatalogs.get(position));
+        mPresenter.moveToDetailActivity(position);
     }
 
     public static CatalogFragment newInstance() {
@@ -41,8 +41,6 @@ public class CatalogFragment extends Fragment implements CatalogContract.View {
     }
 
     private CatalogContract.Presenter mPresenter;
-
-    private List<Catalog> mCatalogs;
 
     @Nullable
     @Override
@@ -60,13 +58,11 @@ public class CatalogFragment extends Fragment implements CatalogContract.View {
     }
 
     @Override
-    public void showCatalogs(List<Catalog> catalogs) {
-        List<String> names = mPresenter.getCatalogNames(catalogs);
+    public void showCatalogs(List<String> catalogNames) {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(
-                getContext(), android.R.layout.simple_list_item_1, names);
+                getContext(), android.R.layout.simple_list_item_1, catalogNames);
 
         mListTumbuhan.setAdapter(adapter);
-        mCatalogs = catalogs;
     }
 
     @Override

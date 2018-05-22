@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -17,6 +18,9 @@ import android.widget.TextView;
 import com.herballife.main.R;
 import com.herballife.main.main.view.activity.MainActivity;
 import com.herballife.main.splashscreen.contract.SplashScreenContract;
+import com.herballife.main.splashscreen.util.SplashScreenHandler;
+
+import java.util.concurrent.atomic.AtomicInteger;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -24,8 +28,6 @@ import butterknife.ButterKnife;
 public class SplashScreenFragment extends Fragment implements SplashScreenContract.View {
 
     private static final String TAG = "SplashScreenFragment";
-
-    private static final Integer INITIAL_PROGRESS = 0;
 
     @BindView(R.id.prog)
     public ProgressBar mProgressBar;
@@ -35,7 +37,7 @@ public class SplashScreenFragment extends Fragment implements SplashScreenContra
 
     private SplashScreenContract.Presenter mPresenter;
 
-    private Boolean mIsRunning;
+    private Handler mHandler;
 
     public static SplashScreenFragment newInstance() {
         return new SplashScreenFragment();
@@ -59,7 +61,9 @@ public class SplashScreenFragment extends Fragment implements SplashScreenContra
     @Override
     public void onStart() {
         super.onStart();
-        mPresenter.onStart();
+
+        mHandler = new SplashScreenHandler(mPresenter);
+        mPresenter.onStart(new SplashScreenRunnable());
     }
 
     @Override
@@ -69,26 +73,24 @@ public class SplashScreenFragment extends Fragment implements SplashScreenContra
     }
 
     @Override
-    public void setRunningIsFalse() {
-        mIsRunning = Boolean.FALSE;
+    public void setProgressBarValue(Integer progress) {
+        mProgressBar.setProgress(progress);
     }
 
     @Override
-    public void setProgressBarInitialValue() {
-        mProgressBar.setProgress(INITIAL_PROGRESS);
+    public void sendMessage(AtomicInteger progress) {
+        Message message = createMessage(progress);
+        mHandler.sendMessage(message);
     }
 
     @Override
-    public void setRunningIsTrue() {
-        mIsRunning = Boolean.TRUE;
+    public void setProgressText(String text) {
+        mTextView.setText(text);
     }
 
     @Override
-    public void startBackgroundProcess() {
-        Handler handler = new SplashScreenHandler(mTextView, mProgressBar);
-        Runnable runnable = new SplashScreenRunnable(handler);
-
-        new Thread(runnable).start();
+    public void incrementProgressBar(Integer progress) {
+        mProgressBar.incrementProgressBy(progress);
     }
 
     @Override
@@ -107,6 +109,13 @@ public class SplashScreenFragment extends Fragment implements SplashScreenContra
         return getContext();
     }
 
+    private Message createMessage(AtomicInteger progress) {
+        Message message = mHandler.obtainMessage();
+        message.obj = progress;
+
+        return message;
+    }
+
     private void startMainActivity() {
         Intent intent = new Intent(getContext(), MainActivity.class);
         startActivity(intent);
@@ -118,16 +127,10 @@ public class SplashScreenFragment extends Fragment implements SplashScreenContra
 
     private class SplashScreenRunnable implements Runnable {
 
-        private Handler mHandler;
-
-        private SplashScreenRunnable(Handler handler) {
-            mHandler = handler;
-        }
-
         @Override
         public void run() {
             try {
-                mPresenter.handleProgressBar(mHandler, mIsRunning);
+                mPresenter.doBackgroundProcess();
             } catch (InterruptedException e) {
                 Log.e(TAG, e.getMessage());
             }
