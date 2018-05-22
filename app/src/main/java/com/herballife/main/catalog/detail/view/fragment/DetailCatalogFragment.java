@@ -1,6 +1,5 @@
 package com.herballife.main.catalog.detail.view.fragment;
 
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -38,7 +37,7 @@ public class DetailCatalogFragment extends Fragment implements DetailCatalogCont
     @BindString(R.string.detail_catalog_use_title)
     public String mUseTitle;
 
-    private DetailCatalogContract.Presenter mPresenter;
+    private DetailCatalogContract.ViewModel mPresenter;
 
     private Catalog mCatalog;
 
@@ -87,12 +86,8 @@ public class DetailCatalogFragment extends Fragment implements DetailCatalogCont
     }
 
     @Override
-    public void setPresenter(@NonNull DetailCatalogContract.Presenter presenter) {
-        mPresenter = presenter;
+    public void setViewModel(@NonNull DetailCatalogContract.ViewModel viewModel) {
+        mPresenter = viewModel;
     }
 
-    @Override
-    public Context getContextView() {
-        return getContext();
-    }
 }

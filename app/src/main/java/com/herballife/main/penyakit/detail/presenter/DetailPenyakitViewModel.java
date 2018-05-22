@@ -3,13 +3,13 @@ package com.herballife.main.penyakit.detail.presenter;
 import com.herballife.main.model.Penyakit;
 import com.herballife.main.penyakit.detail.contract.DetailPenyakitContract;
 
-public class DetailPenyakitPresenter implements DetailPenyakitContract.Presenter {
+public class DetailPenyakitViewModel implements DetailPenyakitContract.ViewModel {
 
     private final DetailPenyakitContract.View mView;
 
-    public DetailPenyakitPresenter(DetailPenyakitContract.View view) {
+    public DetailPenyakitViewModel(DetailPenyakitContract.View view) {
         mView = view;
-        mView.setPresenter(this);
+        mView.setViewModel(this);
     }
 
     @Override

@@ -1,31 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="bottom"
-    android:orientation="vertical"
-    tools:context=".splashscreen.SplashScreenActivity">
+    tools:context=".splashscreen.view.activity.SplashScreenActivity">
 
-    <ImageView
+    <data>
+        <variable
+            name="view"
+            type="com.herballife.main.splashscreen.contract.SplashScreenContract.View" />
+
+        <variable
+            name="splashScreenViewModel"
+            type="com.herballife.main.splashscreen.viewmodel.SplashScreenViewModel" />
+    </data>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/loading" />
+        android:gravity="bottom"
+        android:orientation="vertical">
 
-    <ProgressBar
-        android:id="@+id/prog"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginBottom="10dip"
-        android:layout_weight="1" />
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/loading" />
 
-    <TextView
-        android:id="@+id/load"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_gravity="center"
-        android:layout_weight="1"
-        android:textColor="#111111" />
+        <ProgressBar
+            android:id="@+id/prog"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="10dip"
+            android:layout_weight="1"
+            android:progress="@{splashScreenViewModel.progress}" />
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/load"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:text="@{splashScreenViewModel.text}"
+            android:textColor="#111111" />
+
+    </LinearLayout>
+
+</layout>

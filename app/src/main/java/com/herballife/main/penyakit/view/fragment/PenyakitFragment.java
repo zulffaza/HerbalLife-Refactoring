@@ -1,6 +1,5 @@
 package com.herballife.main.penyakit.view.fragment;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -47,7 +46,7 @@ public class PenyakitFragment extends Fragment implements PenyakitContract.View 
         return new PenyakitFragment();
     }
 
-    private PenyakitContract.Presenter mPresenter;
+    private PenyakitContract.ViewModel mPresenter;
 
     @Nullable
     @Override
@@ -92,13 +91,8 @@ public class PenyakitFragment extends Fragment implements PenyakitContract.View 
     }
 
     @Override
-    public void setPresenter(@NonNull PenyakitContract.Presenter presenter) {
-        mPresenter = presenter;
-    }
-
-    @Override
-    public Context getContextView() {
-        return getContext();
+    public void setViewModel(@NonNull PenyakitContract.ViewModel viewModel) {
+        mPresenter = viewModel;
     }
 
     private void moveActivity(Intent intent) {

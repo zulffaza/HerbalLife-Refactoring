@@ -1,6 +1,5 @@
 package com.herballife.main.catalog.view.fragment;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -40,7 +39,7 @@ public class CatalogFragment extends Fragment implements CatalogContract.View {
         return new CatalogFragment();
     }
 
-    private CatalogContract.Presenter mPresenter;
+    private CatalogContract.ViewModel mPresenter;
 
     @Nullable
     @Override
@@ -79,13 +78,8 @@ public class CatalogFragment extends Fragment implements CatalogContract.View {
     }
 
     @Override
-    public void setPresenter(@NonNull CatalogContract.Presenter presenter) {
-        mPresenter = presenter;
-    }
-
-    @Override
-    public Context getContextView() {
-        return getContext();
+    public void setViewModel(@NonNull CatalogContract.ViewModel viewModel) {
+        mPresenter = viewModel;
     }
 
     private void moveActivity(Intent intent) {

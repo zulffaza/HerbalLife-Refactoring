@@ -1,6 +1,5 @@
 package com.herballife.main.splashscreen.view.fragment;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -16,9 +15,11 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.herballife.main.R;
+import com.herballife.main.databinding.FragmentSplashScreenBinding;
 import com.herballife.main.main.view.activity.MainActivity;
 import com.herballife.main.splashscreen.contract.SplashScreenContract;
 import com.herballife.main.splashscreen.util.SplashScreenHandler;
+import com.herballife.main.splashscreen.viewmodel.SplashScreenViewModel;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -35,7 +36,7 @@ public class SplashScreenFragment extends Fragment implements SplashScreenContra
     @BindView(R.id.load)
     public TextView mTextView;
 
-    private SplashScreenContract.Presenter mPresenter;
+    private SplashScreenContract.ViewModel mViewModel;
 
     private Handler mHandler;
 
@@ -46,13 +47,18 @@ public class SplashScreenFragment extends Fragment implements SplashScreenContra
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mPresenter.onCreate();
+        mViewModel.onCreate();
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_splash_screen, container, false);
+        FragmentSplashScreenBinding mFragmentSplashScreenBinding = FragmentSplashScreenBinding
+                .inflate(inflater, container, false);
+        mFragmentSplashScreenBinding.setView(this);
+        mFragmentSplashScreenBinding.setSplashScreenViewModel((SplashScreenViewModel) mViewModel);
+
+        View view = mFragmentSplashScreenBinding.getRoot();
         ButterKnife.bind(this, view);
 
         return view;
@@ -62,19 +68,14 @@ public class SplashScreenFragment extends Fragment implements SplashScreenContra
     public void onStart() {
         super.onStart();
 
-        mHandler = new SplashScreenHandler(mPresenter);
-        mPresenter.onStart(new SplashScreenRunnable());
+        mHandler = new SplashScreenHandler(mViewModel);
+        mViewModel.onStart(new SplashScreenRunnable());
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        mPresenter.onStop();
-    }
-
-    @Override
-    public void setProgressBarValue(Integer progress) {
-        mProgressBar.setProgress(progress);
+        mViewModel.onStop();
     }
 
     @Override
@@ -84,29 +85,14 @@ public class SplashScreenFragment extends Fragment implements SplashScreenContra
     }
 
     @Override
-    public void setProgressText(String text) {
-        mTextView.setText(text);
-    }
-
-    @Override
-    public void incrementProgressBar(Integer progress) {
-        mProgressBar.incrementProgressBy(progress);
-    }
-
-    @Override
     public void moveToMainActivity() {
         startMainActivity();
         finishActivity();
     }
 
     @Override
-    public void setPresenter(@NonNull SplashScreenContract.Presenter presenter) {
-        mPresenter = presenter;
-    }
-
-    @Override
-    public Context getContextView() {
-        return getContext();
+    public void setViewModel(@NonNull SplashScreenContract.ViewModel viewModel) {
+        mViewModel = viewModel;
     }
 
     private Message createMessage(AtomicInteger progress) {
@@ -130,12 +116,12 @@ public class SplashScreenFragment extends Fragment implements SplashScreenContra
         @Override
         public void run() {
             try {
-                mPresenter.doBackgroundProcess();
+                mViewModel.doBackgroundProcess();
             } catch (InterruptedException e) {
                 Log.e(TAG, e.getMessage());
             }
 
-            mPresenter.moveToMainActivity();
+            mViewModel.moveToMainActivity();
         }
     }
 }

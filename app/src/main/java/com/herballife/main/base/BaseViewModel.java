@@ -1,6 +1,6 @@
 package com.herballife.main.base;
 
-public interface BasePresenter {
+public interface BaseViewModel {
 
     void onCreate();
     void onStart();

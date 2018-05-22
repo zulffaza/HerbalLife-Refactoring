@@ -3,13 +3,13 @@ package com.herballife.main.catalog.detail.presenter;
 import com.herballife.main.catalog.detail.contract.DetailCatalogContract;
 import com.herballife.main.model.Catalog;
 
-public class DetailCatalogPresenter implements DetailCatalogContract.Presenter {
+public class DetailCatalogViewModel implements DetailCatalogContract.ViewModel {
 
     private final DetailCatalogContract.View mView;
 
-    public DetailCatalogPresenter(DetailCatalogContract.View view) {
+    public DetailCatalogViewModel(DetailCatalogContract.View view) {
         mView = view;
-        mView.setPresenter(this);
+        mView.setViewModel(this);
     }
 
     @Override

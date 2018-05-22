@@ -1,11 +1,11 @@
 package com.herballife.main.main.contract;
 
-import com.herballife.main.base.BasePresenter;
+import com.herballife.main.base.BaseViewModel;
 import com.herballife.main.base.BaseView;
 
 public interface MainContract {
 
-    interface View extends BaseView<Presenter> {
+    interface View extends BaseView<ViewModel> {
 
         void moveToSearchActivity();
 
@@ -16,7 +16,7 @@ public interface MainContract {
         void showExitConfirmationPopup();
     }
 
-    interface Presenter extends BasePresenter {
+    interface ViewModel extends BaseViewModel {
 
         void moveToSearchActivity();
 

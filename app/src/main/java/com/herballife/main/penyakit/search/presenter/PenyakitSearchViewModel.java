@@ -8,7 +8,7 @@ import com.herballife.main.penyakit.search.contract.PenyakitSearchContract;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PenyakitSearchPresenter implements PenyakitSearchContract.Presenter {
+public class PenyakitSearchViewModel implements PenyakitSearchContract.ViewModel {
 
     private PenyakitSearchContract.View mView;
 
@@ -16,12 +16,12 @@ public class PenyakitSearchPresenter implements PenyakitSearchContract.Presenter
 
     private List<Penyakit> mPenyakits;
 
-    public PenyakitSearchPresenter(PenyakitRepository penyakitRepository,
+    public PenyakitSearchViewModel(PenyakitRepository penyakitRepository,
                                    PenyakitSearchContract.View view) {
         mPenyakitRepository = penyakitRepository;
         mView = view;
 
-        mView.setPresenter(this);
+        mView.setViewModel(this);
     }
 
     @Override
