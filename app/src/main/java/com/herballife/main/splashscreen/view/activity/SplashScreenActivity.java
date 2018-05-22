@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.herballife.main.R;
-import com.herballife.main.splashscreen.presenter.SplashScreenPresenter;
+import com.herballife.main.splashscreen.viewmodel.SplashScreenViewModel;
 import com.herballife.main.splashscreen.view.fragment.SplashScreenFragment;
 import com.herballife.main.util.ActivityUtils;
 
@@ -19,6 +19,6 @@ public class SplashScreenActivity extends AppCompatActivity {
         ActivityUtils.addFragmentToActivity(getSupportFragmentManager(),
                 splashScreenFragment, R.id.fl_splash_screen);
 
-        new SplashScreenPresenter(splashScreenFragment);
+        new SplashScreenViewModel(splashScreenFragment);
     }
 }

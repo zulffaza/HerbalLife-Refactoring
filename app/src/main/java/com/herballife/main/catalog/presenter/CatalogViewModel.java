@@ -8,7 +8,7 @@ import com.herballife.main.model.Catalog;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CatalogPresenter implements CatalogContract.Presenter {
+public class CatalogViewModel implements CatalogContract.ViewModel {
 
     private final CatalogContract.View mView;
 
@@ -16,11 +16,11 @@ public class CatalogPresenter implements CatalogContract.Presenter {
 
     private List<Catalog> mCatalogs;
 
-    public CatalogPresenter(CatalogRepository catalogRepository, CatalogContract.View view) {
+    public CatalogViewModel(CatalogRepository catalogRepository, CatalogContract.View view) {
         mCatalogRepository = catalogRepository;
         mView = view;
 
-        mView.setPresenter(this);
+        mView.setViewModel(this);
     }
 
     @Override

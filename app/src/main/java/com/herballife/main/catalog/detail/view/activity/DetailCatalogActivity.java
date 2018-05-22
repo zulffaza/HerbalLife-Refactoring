@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.herballife.main.R;
-import com.herballife.main.catalog.detail.presenter.DetailCatalogPresenter;
+import com.herballife.main.catalog.detail.presenter.DetailCatalogViewModel;
 import com.herballife.main.catalog.detail.view.fragment.DetailCatalogFragment;
 import com.herballife.main.catalog.view.fragment.CatalogFragment;
 import com.herballife.main.model.Catalog;
@@ -21,6 +21,6 @@ public class DetailCatalogActivity extends AppCompatActivity {
         ActivityUtils.addFragmentToActivity(getSupportFragmentManager(),
                 detailCatalogFragment, R.id.fl_detail_catalog);
 
-        new DetailCatalogPresenter(detailCatalogFragment);
+        new DetailCatalogViewModel(detailCatalogFragment);
     }
 }

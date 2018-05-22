@@ -1,7 +1,6 @@
 package com.herballife.main.main.view.fragment;
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -42,7 +41,7 @@ public class MainFragment extends Fragment implements MainContract.View {
         mPresenter.showExitConfirmationPopup();
     }
 
-    private MainContract.Presenter mPresenter;
+    private MainContract.ViewModel mPresenter;
 
     public static MainFragment newInstance() {
         return new MainFragment();
@@ -118,13 +117,8 @@ public class MainFragment extends Fragment implements MainContract.View {
     }
 
     @Override
-    public void setPresenter(@NonNull MainContract.Presenter presenter) {
-        mPresenter = presenter;
-    }
-
-    @Override
-    public Context getContextView() {
-        return getContext();
+    public void setViewModel(@NonNull MainContract.ViewModel viewModel) {
+        mPresenter = viewModel;
     }
 
     private void moveActivity(Class destinationActivity) {

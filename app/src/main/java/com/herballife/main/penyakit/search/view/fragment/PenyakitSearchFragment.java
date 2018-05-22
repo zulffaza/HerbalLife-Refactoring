@@ -1,6 +1,5 @@
 package com.herballife.main.penyakit.search.view.fragment;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -41,7 +40,7 @@ public class PenyakitSearchFragment extends Fragment implements PenyakitSearchCo
         return new PenyakitSearchFragment();
     }
 
-    private PenyakitSearchContract.Presenter mPresenter;
+    private PenyakitSearchContract.ViewModel mPresenter;
 
     @Nullable
     @Override
@@ -88,13 +87,8 @@ public class PenyakitSearchFragment extends Fragment implements PenyakitSearchCo
     }
 
     @Override
-    public void setPresenter(@NonNull PenyakitSearchContract.Presenter presenter) {
-        mPresenter = presenter;
-    }
-
-    @Override
-    public Context getContextView() {
-        return getContext();
+    public void setViewModel(@NonNull PenyakitSearchContract.ViewModel viewModel) {
+        mPresenter = viewModel;
     }
 
     private void moveActivity(Intent intent) {

@@ -1,26 +1,20 @@
 package com.herballife.main.splashscreen.contract;
 
-import com.herballife.main.base.BasePresenter;
+import com.herballife.main.base.BaseViewModel;
 import com.herballife.main.base.BaseView;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
 public interface SplashScreenContract {
 
-    interface View extends BaseView<Presenter> {
-
-        void setProgressBarValue(Integer progress);
+    interface View extends BaseView<ViewModel> {
 
         void sendMessage(AtomicInteger progress);
-
-        void setProgressText(String text);
-
-        void incrementProgressBar(Integer progress);
 
         void moveToMainActivity();
     }
 
-    interface Presenter extends BasePresenter {
+    interface ViewModel extends BaseViewModel {
 
         void onStart(Runnable runnable);
 
