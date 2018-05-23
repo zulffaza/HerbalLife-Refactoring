@@ -1,4 +1,4 @@
-package com.herballife.main.main.presenter;
+package com.herballife.main.main.viewmodel;
 
 import com.herballife.main.main.contract.MainContract;
 
