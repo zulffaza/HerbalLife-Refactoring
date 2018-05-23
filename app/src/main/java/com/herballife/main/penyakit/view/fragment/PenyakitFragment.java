@@ -1,6 +1,7 @@
 package com.herballife.main.penyakit.view.fragment;
 
 import android.content.Intent;
+import android.databinding.BindingAdapter;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -8,22 +9,23 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.herballife.main.penyakit.contract.PenyakitContract;
-import com.herballife.main.penyakit.search.view.activity.PenyakitSearchActivity;
-import com.herballife.main.penyakit.detail.view.activity.DetailPenyakitActivity;
 import com.herballife.main.R;
+import com.herballife.main.databinding.FragmentPenyakitBinding;
 import com.herballife.main.model.Penyakit;
+import com.herballife.main.penyakit.adapter.PenyakitAdapter;
+import com.herballife.main.penyakit.contract.PenyakitContract;
+import com.herballife.main.penyakit.detail.view.activity.DetailPenyakitActivity;
+import com.herballife.main.penyakit.search.view.activity.PenyakitSearchActivity;
+import com.herballife.main.penyakit.viewmodel.PenyakitViewModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
-import butterknife.OnItemClick;
 
 public class PenyakitFragment extends Fragment implements PenyakitContract.View {
 
@@ -32,27 +34,24 @@ public class PenyakitFragment extends Fragment implements PenyakitContract.View 
     @BindView(R.id.listpenyakit)
     public ListView mListPenyakit;
 
-    @OnItemClick(R.id.listpenyakit)
-    public void moveToDetail(int position) {
-        mPresenter.moveToDetailActivity(position);
-    }
-
-    @OnClick(R.id.tombol_cari)
-    public void moveToSearch() {
-        mPresenter.moveToSearchActivity();
-    }
-
     public static PenyakitFragment newInstance() {
         return new PenyakitFragment();
     }
 
-    private PenyakitContract.ViewModel mPresenter;
+    private PenyakitContract.ViewModel mViewModel;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_penyakit, container, false);
+        FragmentPenyakitBinding fragmentPenyakitBinding = FragmentPenyakitBinding.inflate(inflater,
+                container, false);
+        fragmentPenyakitBinding.setView(this);
+        fragmentPenyakitBinding.setPenyakitViewModel((PenyakitViewModel) mViewModel);
+
+        View view = fragmentPenyakitBinding.getRoot();
         ButterKnife.bind(this, view);
+
+        setListPenyakit();
 
         return view;
     }
@@ -60,15 +59,7 @@ public class PenyakitFragment extends Fragment implements PenyakitContract.View 
     @Override
     public void onStart() {
         super.onStart();
-        mPresenter.onStart();
-    }
-
-    @Override
-    public void showPenyakits(List<String> penyakitNames) {
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(
-                getContext(), android.R.layout.simple_list_item_1, penyakitNames);
-
-        mListPenyakit.setAdapter(adapter);
+        mViewModel.onStart();
     }
 
     @Override
@@ -92,7 +83,20 @@ public class PenyakitFragment extends Fragment implements PenyakitContract.View 
 
     @Override
     public void setViewModel(@NonNull PenyakitContract.ViewModel viewModel) {
-        mPresenter = viewModel;
+        mViewModel = viewModel;
+    }
+
+    @BindingAdapter("app:items")
+    public static void setItems(ListView listView, List<Penyakit> penyakits) {
+        PenyakitAdapter adapter = (PenyakitAdapter) listView.getAdapter();
+
+        if (adapter != null)
+            adapter.replaceData(penyakits);
+    }
+
+    private void setListPenyakit() {
+        PenyakitAdapter adapter = new PenyakitAdapter(new ArrayList<Penyakit>(), this);
+        mListPenyakit.setAdapter(adapter);
     }
 
     private void moveActivity(Intent intent) {
