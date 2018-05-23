@@ -1,4 +1,4 @@
-package com.herballife.main.main.presenter;
+package com.herballife.main.main.viewmodel;
 
 import com.herballife.main.main.contract.MainContract;
 
@@ -11,22 +11,18 @@ public class MainViewModel implements MainContract.ViewModel {
         mView.setViewModel(this);
     }
 
-    @Override
     public void moveToSearchActivity() {
         mView.moveToSearchActivity();
     }
 
-    @Override
     public void moveToCatalogActivity() {
         mView.moveToCatalogActivity();
     }
 
-    @Override
     public void showHelpPopup() {
         mView.showHelpPopup();
     }
 
-    @Override
     public void showExitConfirmationPopup() {
         mView.showExitConfirmationPopup();
     }

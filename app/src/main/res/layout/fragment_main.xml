@@ -1,51 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/home"
-    android:gravity="center_horizontal"
     tools:context=".main.view.activity.MainActivity">
 
-    <ImageButton
-        android:id="@+id/btn_catalog"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/btn_search"
-        android:layout_marginLeft="22dp"
-        android:layout_marginTop="14dp"
-        android:background="@drawable/katalog"
-        android:src="@drawable/katalog" />
+    <data>
+        <variable
+            name="view"
+            type="com.herballife.main.main.contract.MainContract.View" />
 
-    <ImageButton
-        android:id="@+id/btn_exit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/btn_catalog"
-        android:layout_below="@+id/btn_help"
-        android:layout_marginTop="17dp"
-        android:background="@drawable/exit"
-        android:src="@drawable/exit" />
+        <variable
+            name="mainViewModel"
+            type="com.herballife.main.main.viewmodel.MainViewModel" />
+    </data>
 
-    <ImageButton
-        android:id="@+id/btn_help"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/btn_catalog"
-        android:layout_marginTop="15dp"
-        android:background="@drawable/help"
-        android:src="@drawable/help" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/home"
+        android:gravity="center_horizontal">
 
-    <ImageButton
-        android:id="@+id/btn_search"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="70dp"
-        android:background="@drawable/search"
-        android:src="@drawable/search" />
+        <ImageButton
+            android:id="@+id/btn_catalog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/btn_search"
+            android:layout_marginLeft="22dp"
+            android:layout_marginTop="14dp"
+            android:background="@drawable/katalog"
+            android:onClick="@{() -> mainViewModel.moveToCatalogActivity()}"
+            android:src="@drawable/katalog" />
 
-</RelativeLayout>
+        <ImageButton
+            android:id="@+id/btn_exit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/btn_catalog"
+            android:layout_below="@+id/btn_help"
+            android:layout_marginTop="17dp"
+            android:background="@drawable/exit"
+            android:onClick="@{() -> mainViewModel.showExitConfirmationPopup()}"
+            android:src="@drawable/exit" />
+
+        <ImageButton
+            android:id="@+id/btn_help"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/btn_catalog"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/help"
+            android:onClick="@{() -> mainViewModel.showHelpPopup()}"
+            android:src="@drawable/help" />
+
+        <ImageButton
+            android:id="@+id/btn_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="70dp"
+            android:background="@drawable/search"
+            android:onClick="@{() -> mainViewModel.moveToSearchActivity()}"
+            android:src="@drawable/search" />
+
+    </RelativeLayout>
+
+</layout>

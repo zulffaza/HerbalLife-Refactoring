@@ -18,12 +18,5 @@ public interface MainContract {
 
     interface ViewModel extends BaseViewModel {
 
-        void moveToSearchActivity();
-
-        void moveToCatalogActivity();
-
-        void showHelpPopup();
-
-        void showExitConfirmationPopup();
     }
 }
