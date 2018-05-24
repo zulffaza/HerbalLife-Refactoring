@@ -3,6 +3,8 @@ package com.herballife.main.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.herballife.main.catalog.util.ByteUtils;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -28,8 +30,10 @@ public class Catalog implements Parcelable {
         name = in.readString();
         use = in.readString();
 
-        image = new byte[in.readInt()];
-        in.readByteArray(image);
+        byte[] bytes = new byte[in.readInt()];
+        in.readByteArray(bytes);
+
+        image = ByteUtils.toByteObjectArray(bytes);
     }
 
     public static final String ID_COLUMN_NAME = "TumbuhanID";
@@ -46,7 +50,7 @@ public class Catalog implements Parcelable {
 
     private String use;
 
-    private byte[] image;
+    private Byte[] image;
 
     @Override
     public int describeContents() {
@@ -60,6 +64,6 @@ public class Catalog implements Parcelable {
         dest.writeString(use);
 
         dest.writeInt(image.length);
-        dest.writeByteArray(image);
+        dest.writeByteArray(ByteUtils.toByteArray(image));
     }
 }
