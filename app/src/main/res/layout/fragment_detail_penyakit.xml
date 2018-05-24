@@ -57,7 +57,9 @@
                 android:textColor="#000000"
                 android:textSize="15dp"
                 android:textStyle="italic" />
+
         </LinearLayout>
+
     </ScrollView>
 
     <Button
