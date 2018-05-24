@@ -19,7 +19,7 @@ public interface PenyakitContract {
 
     }
 
-    interface RowViewModel extends BaseViewModel {
+    interface ItemViewModel extends BaseViewModel {
 
         void moveToDetailActivity();
     }

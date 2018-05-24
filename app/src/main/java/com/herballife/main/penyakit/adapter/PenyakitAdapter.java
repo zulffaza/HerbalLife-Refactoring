@@ -41,17 +41,15 @@ public class PenyakitAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        ItemPenyakitBinding itemPenyakitBinding;
+        ItemPenyakitBinding itemPenyakitBinding = DataBindingUtil.getBinding(convertView);
 
-        if (convertView == null)
+        if (itemPenyakitBinding == null)
             itemPenyakitBinding = inflateNewView(parent);
-        else
-            itemPenyakitBinding = DataBindingUtil.getBinding(convertView);
 
         Penyakit penyakit = mPenyakits.get(position);
-        PenyakitItemViewModel viewModel = new PenyakitItemViewModel(mView, penyakit);
+        PenyakitContract.ItemViewModel viewModel = new PenyakitItemViewModel(mView, penyakit);
 
-        itemPenyakitBinding.setPenyakitItemViewModel(viewModel);
+        itemPenyakitBinding.setPenyakitItemViewModel((PenyakitItemViewModel) viewModel);
 
         return itemPenyakitBinding.getRoot();
     }

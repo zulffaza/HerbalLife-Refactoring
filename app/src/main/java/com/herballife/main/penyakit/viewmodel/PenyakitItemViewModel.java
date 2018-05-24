@@ -7,7 +7,7 @@ import com.herballife.main.model.Penyakit;
 import com.herballife.main.penyakit.contract.PenyakitContract;
 
 public class PenyakitItemViewModel extends BaseObservable
-        implements PenyakitContract.RowViewModel {
+        implements PenyakitContract.ItemViewModel {
 
     public final ObservableField<Penyakit> penyakit = new ObservableField<>();
 
