@@ -10,16 +10,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.herballife.main.catalog.view.activity.CatalogActivity;
 import com.herballife.main.R;
+import com.herballife.main.catalog.view.activity.CatalogActivity;
+import com.herballife.main.databinding.FragmentDetailPenyakitBinding;
 import com.herballife.main.model.Penyakit;
 import com.herballife.main.penyakit.detail.contract.DetailPenyakitContract;
+import com.herballife.main.penyakit.detail.viewmodel.DetailPenyakitViewModel;
 import com.herballife.main.penyakit.view.fragment.PenyakitFragment;
 
 import butterknife.BindString;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class DetailPenyakitFragment extends Fragment implements DetailPenyakitContract.View {
 
@@ -32,18 +33,13 @@ public class DetailPenyakitFragment extends Fragment implements DetailPenyakitCo
     @BindView(R.id.tutorial)
     public TextView mTutorial;
 
-    @OnClick(R.id.button1)
-    public void moveToCatalog() {
-        mPresenter.moveToCatalogActivity();
-    }
-
     @BindString(R.string.detail_penyakit_bahan_title)
     public String mHerbalMedicineTitle;
 
     @BindString(R.string.detail_penyakit_tutorial_title)
     public String mTutorialTitle;
 
-    private DetailPenyakitContract.ViewModel mPresenter;
+    private DetailPenyakitContract.ViewModel mViewModel;
 
     private Penyakit mPenyakit;
 
@@ -68,7 +64,12 @@ public class DetailPenyakitFragment extends Fragment implements DetailPenyakitCo
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_detail_penyakit, container, false);
+        FragmentDetailPenyakitBinding fragmentDetailPenyakitBinding = FragmentDetailPenyakitBinding
+                .inflate(inflater, container, false);
+        fragmentDetailPenyakitBinding.setView(this);
+        fragmentDetailPenyakitBinding.setDetailPenyakitViewModel((DetailPenyakitViewModel) mViewModel);
+
+        View view = fragmentDetailPenyakitBinding.getRoot();
         ButterKnife.bind(this, view);
 
         return view;
@@ -77,17 +78,17 @@ public class DetailPenyakitFragment extends Fragment implements DetailPenyakitCo
     @Override
     public void onStart() {
         super.onStart();
-        mPresenter.onStart(mPenyakit);
+        mViewModel.onStart(mPenyakit);
     }
 
     @Override
-    public void showPenyakit() {
-        String herbalMedicine = mHerbalMedicineTitle + mPenyakit.getHerbalMedicine();
-        String tutorial = mTutorialTitle + mPenyakit.getTutorial();
+    public String getHerbalMedicineTitle() {
+        return mHerbalMedicineTitle;
+    }
 
-        mName.setText(mPenyakit.getName());
-        mHerbalMedicine.setText(herbalMedicine);
-        mTutorial.setText(tutorial);
+    @Override
+    public String getTutorialTitle() {
+        return mTutorialTitle;
     }
 
     @Override
@@ -98,7 +99,7 @@ public class DetailPenyakitFragment extends Fragment implements DetailPenyakitCo
 
     @Override
     public void setViewModel(@NonNull DetailPenyakitContract.ViewModel viewModel) {
-        mPresenter = viewModel;
+        mViewModel = viewModel;
     }
 
 }
