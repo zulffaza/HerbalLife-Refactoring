@@ -1,5 +1,7 @@
 package com.herballife.main.main.viewmodel;
 
+import android.view.View;
+
 import com.herballife.main.main.contract.MainContract;
 
 public class MainViewModel implements MainContract.ViewModel {
@@ -11,19 +13,19 @@ public class MainViewModel implements MainContract.ViewModel {
         mView.setViewModel(this);
     }
 
-    public void moveToSearchActivity() {
+    public void moveToSearchActivity(View view) {
         mView.moveToSearchActivity();
     }
 
-    public void moveToCatalogActivity() {
+    public void moveToCatalogActivity(View view) {
         mView.moveToCatalogActivity();
     }
 
-    public void showHelpPopup() {
+    public void showHelpPopup(View view) {
         mView.showHelpPopup();
     }
 
-    public void showExitConfirmationPopup() {
+    public void showExitConfirmationPopup(View view) {
         mView.showExitConfirmationPopup();
     }
 

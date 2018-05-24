@@ -1,6 +1,7 @@
 package com.herballife.main.penyakit.detail.viewmodel;
 
 import android.databinding.ObservableField;
+import android.view.View;
 
 import com.herballife.main.model.Penyakit;
 import com.herballife.main.penyakit.detail.contract.DetailPenyakitContract;
@@ -22,8 +23,7 @@ public class DetailPenyakitViewModel implements DetailPenyakitContract.ViewModel
         mView.setViewModel(this);
     }
 
-    @Override
-    public void moveToCatalogActivity() {
+    public void moveToCatalogActivity(View view) {
         mView.moveToCatalogActivity();
     }
 

@@ -28,7 +28,7 @@
             android:layout_marginLeft="22dp"
             android:layout_marginTop="14dp"
             android:background="@drawable/katalog"
-            android:onClick="@{() -> mainViewModel.moveToCatalogActivity()}"
+            android:onClick="@{mainViewModel::moveToCatalogActivity}"
             android:src="@drawable/katalog" />
 
         <ImageButton
@@ -39,7 +39,7 @@
             android:layout_below="@+id/btn_help"
             android:layout_marginTop="17dp"
             android:background="@drawable/exit"
-            android:onClick="@{() -> mainViewModel.showExitConfirmationPopup()}"
+            android:onClick="@{mainViewModel::showExitConfirmationPopup}"
             android:src="@drawable/exit" />
 
         <ImageButton
@@ -50,7 +50,7 @@
             android:layout_below="@+id/btn_catalog"
             android:layout_marginTop="15dp"
             android:background="@drawable/help"
-            android:onClick="@{() -> mainViewModel.showHelpPopup()}"
+            android:onClick="@{mainViewModel::showHelpPopup}"
             android:src="@drawable/help" />
 
         <ImageButton
@@ -61,7 +61,7 @@
             android:layout_alignParentTop="true"
             android:layout_marginTop="70dp"
             android:background="@drawable/search"
-            android:onClick="@{() -> mainViewModel.moveToSearchActivity()}"
+            android:onClick="@{mainViewModel::moveToSearchActivity}"
             android:src="@drawable/search" />
 
     </RelativeLayout>

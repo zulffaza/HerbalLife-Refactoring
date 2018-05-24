@@ -18,7 +18,5 @@ public interface DetailPenyakitContract {
     interface ViewModel extends BaseViewModel {
 
         void onStart(Penyakit penyakit);
-
-        void moveToCatalogActivity();
     }
 }

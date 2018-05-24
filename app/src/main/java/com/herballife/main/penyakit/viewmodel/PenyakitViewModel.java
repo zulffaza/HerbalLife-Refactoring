@@ -1,6 +1,7 @@
 package com.herballife.main.penyakit.viewmodel;
 
 import android.databinding.ObservableField;
+import android.view.View;
 
 import com.herballife.main.model.Penyakit;
 import com.herballife.main.penyakit.contract.PenyakitContract;
@@ -24,7 +25,7 @@ public class PenyakitViewModel implements PenyakitContract.ViewModel {
         mView.setViewModel(this);
     }
 
-    public void moveToSearchActivity() {
+    public void moveToSearchActivity(View view) {
         mView.moveToSearchActivity();
     }
 

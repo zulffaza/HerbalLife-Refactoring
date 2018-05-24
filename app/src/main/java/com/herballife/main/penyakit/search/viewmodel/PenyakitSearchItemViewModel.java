@@ -1,22 +1,22 @@
-package com.herballife.main.penyakit.viewmodel;
+package com.herballife.main.penyakit.search.viewmodel;
 
 import android.databinding.BaseObservable;
 import android.databinding.ObservableField;
 import android.view.View;
 
 import com.herballife.main.model.Penyakit;
-import com.herballife.main.penyakit.contract.PenyakitContract;
+import com.herballife.main.penyakit.search.contract.PenyakitSearchContract;
 
-public class PenyakitItemViewModel extends BaseObservable
-        implements PenyakitContract.ItemViewModel {
+public class PenyakitSearchItemViewModel extends BaseObservable
+        implements PenyakitSearchContract.ItemViewModel {
 
     public final ObservableField<Penyakit> penyakit = new ObservableField<>();
 
     public final ObservableField<String> name = new ObservableField<>();
 
-    private PenyakitContract.View mView;
+    private PenyakitSearchContract.View mView;
 
-    public PenyakitItemViewModel(PenyakitContract.View view, Penyakit penyakit) {
+    public PenyakitSearchItemViewModel(PenyakitSearchContract.View view, Penyakit penyakit) {
         mView = view;
         this.penyakit.set(penyakit);
         this.name.set(this.penyakit.get().getName());
