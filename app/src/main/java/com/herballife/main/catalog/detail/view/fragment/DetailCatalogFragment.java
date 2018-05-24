@@ -77,7 +77,7 @@ public class DetailCatalogFragment extends Fragment implements DetailCatalogCont
 
     @Override
     public void showCatalog() {
-        String use = mUseTitle + mCatalog.getUse();
+        String use = mUseTitle + " " + mCatalog.getUse();
         Bitmap image = BitmapFactory.decodeByteArray(mCatalog.getImage(),
                 OFFSET, mCatalog.getImage().length);
 

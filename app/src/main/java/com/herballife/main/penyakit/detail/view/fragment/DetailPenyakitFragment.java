@@ -83,8 +83,8 @@ public class DetailPenyakitFragment extends Fragment implements DetailPenyakitCo
 
     @Override
     public void showPenyakit() {
-        String herbalMedicine = mHerbalMedicineTitle + mPenyakit.getHerbalMedicine();
-        String tutorial = mTutorialTitle + mPenyakit.getTutorial();
+        String herbalMedicine = mHerbalMedicineTitle + " " + mPenyakit.getHerbalMedicine();
+        String tutorial = mTutorialTitle + " " + mPenyakit.getTutorial();
 
         mName.setText(mPenyakit.getName());
         mHerbalMedicine.setText(herbalMedicine);
