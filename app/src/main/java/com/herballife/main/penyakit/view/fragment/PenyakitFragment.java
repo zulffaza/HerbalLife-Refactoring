@@ -95,7 +95,8 @@ public class PenyakitFragment extends Fragment implements PenyakitContract.View 
     }
 
     private void setListPenyakit() {
-        PenyakitAdapter adapter = new PenyakitAdapter(new ArrayList<Penyakit>(), this);
+        PenyakitAdapter adapter = new PenyakitAdapter(getContext(), R.layout.item_penyakit,
+                new ArrayList<Penyakit>(), this);
         mListPenyakit.setAdapter(adapter);
     }
 

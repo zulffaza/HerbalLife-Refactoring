@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="penyakitSearchItemViewModel"
+            type="com.herballife.main.penyakit.search.viewmodel.PenyakitSearchItemViewModel" />
+    </data>
+
+    <TextView
+        android:id="@android:id/text1"
+        style="?android:attr/dropDownItemStyle"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/listPreferredItemHeight"
+        android:ellipsize="marquee"
+        android:onClick="@{penyakitSearchItemViewModel::moveToDetailActivity}"
+        android:singleLine="true"
+        android:text="@{penyakitSearchItemViewModel.name}"
+        android:textAppearance="?android:attr/textAppearanceLargePopupMenu" />
+
+</layout>

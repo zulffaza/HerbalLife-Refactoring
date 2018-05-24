@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:minHeight="?android:attr/listPreferredItemHeightSmall"
-        android:onClick="@{() -> penyakitItemViewModel.moveToDetailActivity()}"
+        android:onClick="@{penyakitItemViewModel::moveToDetailActivity}"
         android:paddingLeft="?android:attr/listPreferredItemPaddingLeft"
         android:paddingRight="?android:attr/listPreferredItemPaddingRight"
         android:text="@{penyakitItemViewModel.name}"

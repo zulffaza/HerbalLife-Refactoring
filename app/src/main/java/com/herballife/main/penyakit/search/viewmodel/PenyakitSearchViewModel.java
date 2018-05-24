@@ -1,11 +1,12 @@
-package com.herballife.main.penyakit.search.presenter;
+package com.herballife.main.penyakit.search.viewmodel;
+
+import android.databinding.ObservableField;
 
 import com.herballife.main.model.Penyakit;
 import com.herballife.main.penyakit.datasource.PenyakitDataSource;
 import com.herballife.main.penyakit.datasource.PenyakitRepository;
 import com.herballife.main.penyakit.search.contract.PenyakitSearchContract;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class PenyakitSearchViewModel implements PenyakitSearchContract.ViewModel {
@@ -14,7 +15,9 @@ public class PenyakitSearchViewModel implements PenyakitSearchContract.ViewModel
 
     private PenyakitRepository mPenyakitRepository;
 
-    private List<Penyakit> mPenyakits;
+    public final ObservableField<List<Penyakit>> penyakits = new ObservableField<>();
+
+    public final ObservableField<String> selection = new ObservableField<>();
 
     public PenyakitSearchViewModel(PenyakitRepository penyakitRepository,
                                    PenyakitSearchContract.View view) {
@@ -24,17 +27,8 @@ public class PenyakitSearchViewModel implements PenyakitSearchContract.ViewModel
         mView.setViewModel(this);
     }
 
-    @Override
-    public void changeSelection(String name) {
-        mView.showSelection(name);
-    }
-
-    @Override
-    public void moveIntoDetailPenyakit(String name) {
-        Penyakit penyakit = getPenyakitFromName(name);
-
-        if (isFound(penyakit))
-            mView.moveIntoDetailPenyakit(penyakit);
+    public void changeSelection(CharSequence s, int start, int before, int count) {
+        selection.set(s.toString());
     }
 
     @Override
@@ -67,41 +61,16 @@ public class PenyakitSearchViewModel implements PenyakitSearchContract.ViewModel
         // Do nothing
     }
 
-    private Penyakit getPenyakitFromName(String name) {
-        for (Penyakit penyakit : mPenyakits) {
-            if (penyakit.getName().equals(name))
-                return penyakit;
-        }
-
-        return null;
-    }
-
-    private Boolean isFound(Penyakit penyakit) {
-        return penyakit != null;
-    }
-
     private class PenyakitRepositoryCallback implements PenyakitDataSource.LoadPenyakitCallback {
 
         @Override
         public void onLoadSuccess(List<Penyakit> penyakits) {
-            List<String> penyakitNames = getPenyakitNames(penyakits);
-            mView.showPenyakits(penyakitNames);
-
-            mPenyakits = penyakits;
+            PenyakitSearchViewModel.this.penyakits.set(penyakits);
         }
 
         @Override
         public void onLoadFailed(String message) {
             mView.showToast(message);
-        }
-
-        private List<String> getPenyakitNames(List<Penyakit> penyakits) {
-            List<String> names = new ArrayList<>();
-
-            for (Penyakit penyakit : penyakits)
-                names.add(penyakit.getName());
-
-            return names;
         }
     }
 }

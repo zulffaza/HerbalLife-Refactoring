@@ -82,9 +82,9 @@
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
             android:background="#27eb2b"
+            android:onClick="@{detailPenyakitViewModel::moveToCatalogActivity}"
             android:text="Go to Catalog"
             android:textColor="#000000"
-            android:onClick="@{() -> detailPenyakitViewModel.moveToCatalogActivity()}"
             android:textStyle="bold" />
 
     </LinearLayout>
