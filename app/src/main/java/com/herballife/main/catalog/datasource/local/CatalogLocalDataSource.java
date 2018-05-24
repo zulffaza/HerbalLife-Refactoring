@@ -6,6 +6,7 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.herballife.main.catalog.datasource.CatalogDataSource;
+import com.herballife.main.catalog.util.ByteUtils;
 import com.herballife.main.db.SQLiteDBHelper;
 import com.herballife.main.model.Catalog;
 
@@ -75,7 +76,9 @@ public class CatalogLocalDataSource implements CatalogDataSource {
         Integer id = cursor.getInt(cursor.getColumnIndex(Catalog.ID_COLUMN_NAME));
         String name = cursor.getString(cursor.getColumnIndex(Catalog.NAME_COLUMN_NAME));
         String use = cursor.getString(cursor.getColumnIndex(Catalog.USE_COLUMN_NAME));
-        byte[] image = cursor.getBlob(cursor.getColumnIndex(Catalog.IMAGE_COLUMN_NAME));
+        byte[] imageByte = cursor.getBlob(cursor.getColumnIndex(Catalog.IMAGE_COLUMN_NAME));
+
+        Byte[] image = ByteUtils.toByteObjectArray(imageByte);
 
         return Catalog.builder()
                 .id(id)

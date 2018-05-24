@@ -1,5 +1,6 @@
 package com.herballife.main.catalog.detail.view.fragment;
 
+import android.databinding.BindingAdapter;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -14,7 +15,10 @@ import android.widget.TextView;
 
 import com.herballife.main.R;
 import com.herballife.main.catalog.detail.contract.DetailCatalogContract;
+import com.herballife.main.catalog.detail.viewmodel.DetailCatalogViewModel;
+import com.herballife.main.catalog.util.ByteUtils;
 import com.herballife.main.catalog.view.fragment.CatalogFragment;
+import com.herballife.main.databinding.FragmentDetailCatalogBinding;
 import com.herballife.main.model.Catalog;
 
 import butterknife.BindString;
@@ -37,7 +41,7 @@ public class DetailCatalogFragment extends Fragment implements DetailCatalogCont
     @BindString(R.string.detail_catalog_use_title)
     public String mUseTitle;
 
-    private DetailCatalogContract.ViewModel mPresenter;
+    private DetailCatalogContract.ViewModel mViewModel;
 
     private Catalog mCatalog;
 
@@ -62,7 +66,12 @@ public class DetailCatalogFragment extends Fragment implements DetailCatalogCont
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_detail_catalog, container, false);
+        FragmentDetailCatalogBinding fragmentDetailCatalogBinding = FragmentDetailCatalogBinding
+                .inflate(inflater, container, false);
+        fragmentDetailCatalogBinding.setView(this);
+        fragmentDetailCatalogBinding.setDetailCatalogViewModel((DetailCatalogViewModel) mViewModel);
+
+        View view = fragmentDetailCatalogBinding.getRoot();
         ButterKnife.bind(this, view);
 
         return view;
@@ -71,23 +80,23 @@ public class DetailCatalogFragment extends Fragment implements DetailCatalogCont
     @Override
     public void onStart() {
         super.onStart();
-        mPresenter.onStart(mCatalog);
+        mViewModel.onStart(mCatalog);
     }
 
     @Override
-    public void showCatalog() {
-        String use = mUseTitle + mCatalog.getUse();
-        Bitmap image = BitmapFactory.decodeByteArray(mCatalog.getImage(),
-                OFFSET, mCatalog.getImage().length);
-
-        mName.setText(mCatalog.getName());
-        mUse.setText(use);
-        mImage.setImageBitmap(image);
+    public String getUseTitle() {
+        return mUseTitle;
     }
 
     @Override
     public void setViewModel(@NonNull DetailCatalogContract.ViewModel viewModel) {
-        mPresenter = viewModel;
+        mViewModel = viewModel;
     }
 
+    @BindingAdapter("app:items")
+    public static void setItems(ImageView imageView, Byte[] image) {
+        Bitmap imageBitmap = BitmapFactory.decodeByteArray(ByteUtils.toByteArray(image),
+                OFFSET, image.length);
+        imageView.setImageBitmap(imageBitmap);
+    }
 }
