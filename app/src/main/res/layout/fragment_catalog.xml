@@ -1,26 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".catalog.view.activity.CatalogActivity">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:background="#000000"
-        android:text="Nama Tumbuhan :"
-        android:textColor="#ffffffff"
-        android:textSize="25dp" />
+    <data>
+        <variable
+            name="view"
+            type="com.herballife.main.catalog.contract.CatalogContract.View" />
 
-    <ListView
-        android:id="@+id/list_tumbuhan"
-        android:layout_width="match_parent"
-        android:layout_height="350dp"
-        android:layout_gravity="top"
-        android:layout_marginTop="5dp" />
+        <variable
+            name="catalogViewModel"
+            type="com.herballife.main.catalog.viewmodel.CatalogViewModel" />
+    </data>
 
-</LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:background="#000000"
+            android:text="Nama Tumbuhan :"
+            android:textColor="#ffffffff"
+            android:textSize="25dp" />
+
+        <ListView
+            android:id="@+id/list_tumbuhan"
+            android:layout_width="match_parent"
+            android:layout_height="350dp"
+            android:layout_gravity="top"
+            android:layout_marginTop="5dp"
+            app:items="@{catalogViewModel.catalogs}" />
+
+    </LinearLayout>
+
+</layout>

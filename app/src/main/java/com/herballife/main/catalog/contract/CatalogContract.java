@@ -4,13 +4,9 @@ import com.herballife.main.base.BaseViewModel;
 import com.herballife.main.base.BaseView;
 import com.herballife.main.model.Catalog;
 
-import java.util.List;
-
 public interface CatalogContract {
 
     interface View extends BaseView<ViewModel> {
-
-        void showCatalogs(List<String> catalogNames);
 
         void showToast(String message);
 
@@ -19,6 +15,9 @@ public interface CatalogContract {
 
     interface ViewModel extends BaseViewModel {
 
-        void moveToDetailActivity(Integer position);
+    }
+
+    interface ItemViewModel extends BaseViewModel {
+
     }
 }
