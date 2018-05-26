@@ -7,8 +7,8 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 
+import com.herballife.main.base.BaseAdapter;
 import com.herballife.main.databinding.ItemPenyakitBinding;
 import com.herballife.main.model.Penyakit;
 import com.herballife.main.penyakit.contract.PenyakitContract;
@@ -16,7 +16,7 @@ import com.herballife.main.penyakit.viewmodel.PenyakitItemViewModel;
 
 import java.util.List;
 
-public class PenyakitAdapter extends ArrayAdapter<Penyakit> {
+public class PenyakitAdapter extends BaseAdapter<Penyakit> {
 
     private Context mContext;
 
@@ -48,12 +48,5 @@ public class PenyakitAdapter extends ArrayAdapter<Penyakit> {
     private ItemPenyakitBinding inflateNewView(ViewGroup parent) {
         LayoutInflater inflater = LayoutInflater.from(mContext);
         return ItemPenyakitBinding.inflate(inflater, parent, false);
-    }
-
-    public void replaceData(List<Penyakit> penyakits) {
-        clear();
-        addAll(penyakits);
-
-        notifyDataSetChanged();
     }
 }

@@ -7,9 +7,9 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Filter;
 
+import com.herballife.main.base.BaseAdapter;
 import com.herballife.main.databinding.ItemPenyakitSearchBinding;
 import com.herballife.main.model.Penyakit;
 import com.herballife.main.penyakit.search.contract.PenyakitSearchContract;
@@ -18,7 +18,7 @@ import com.herballife.main.penyakit.search.viewmodel.PenyakitSearchItemViewModel
 import java.util.ArrayList;
 import java.util.List;
 
-public class PenyakitSearchAdapter extends ArrayAdapter<Penyakit> {
+public class PenyakitSearchAdapter extends BaseAdapter<Penyakit> {
 
     private Context mContext;
 

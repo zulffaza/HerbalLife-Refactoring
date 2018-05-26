@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.herballife.main.R;
+import com.herballife.main.base.BaseAdapter;
 import com.herballife.main.databinding.FragmentPenyakitSearchBinding;
 import com.herballife.main.model.Penyakit;
 import com.herballife.main.penyakit.detail.view.activity.DetailPenyakitActivity;
@@ -29,7 +30,7 @@ import butterknife.ButterKnife;
 
 public class PenyakitSearchFragment extends Fragment implements PenyakitSearchContract.View {
 
-    public static final String PENYAKIT_EXTRAS_NAME = "penyakit";
+    public static final String PENYAKIT_EXTRAS_NAME = "catalog";
 
     @BindView(R.id.selection)
     public TextView mSelectionPenyakit;
@@ -86,14 +87,14 @@ public class PenyakitSearchFragment extends Fragment implements PenyakitSearchCo
     @BindingAdapter("app:items")
     public static void setItems(AutoCompleteTextView autoCompleteTextView,
                                 List<Penyakit> penyakits) {
-        PenyakitSearchAdapter adapter = (PenyakitSearchAdapter) autoCompleteTextView.getAdapter();
+        BaseAdapter<Penyakit> adapter = (PenyakitSearchAdapter) autoCompleteTextView.getAdapter();
 
         if (adapter != null)
             adapter.replaceData(penyakits);
     }
 
     private void setListPenyakit() {
-        PenyakitSearchAdapter adapter = new PenyakitSearchAdapter(getContext(),
+        BaseAdapter<Penyakit> adapter = new PenyakitSearchAdapter(getContext(),
                 R.layout.item_penyakit_search, new ArrayList<Penyakit>(), this);
         mListPenyakit.setAdapter(adapter);
     }

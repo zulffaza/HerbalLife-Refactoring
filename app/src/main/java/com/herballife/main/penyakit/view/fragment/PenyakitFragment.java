@@ -13,6 +13,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.herballife.main.R;
+import com.herballife.main.base.BaseAdapter;
 import com.herballife.main.databinding.FragmentPenyakitBinding;
 import com.herballife.main.model.Penyakit;
 import com.herballife.main.penyakit.adapter.PenyakitAdapter;
@@ -29,7 +30,7 @@ import butterknife.ButterKnife;
 
 public class PenyakitFragment extends Fragment implements PenyakitContract.View {
 
-    public static final String PENYAKIT_EXTRAS_NAME = "penyakit";
+    public static final String PENYAKIT_EXTRAS_NAME = "catalog";
 
     @BindView(R.id.listpenyakit)
     public ListView mListPenyakit;
@@ -88,14 +89,14 @@ public class PenyakitFragment extends Fragment implements PenyakitContract.View 
 
     @BindingAdapter("app:items")
     public static void setItems(ListView listView, List<Penyakit> penyakits) {
-        PenyakitAdapter adapter = (PenyakitAdapter) listView.getAdapter();
+        BaseAdapter<Penyakit> adapter = (PenyakitAdapter) listView.getAdapter();
 
         if (adapter != null)
             adapter.replaceData(penyakits);
     }
 
     private void setListPenyakit() {
-        PenyakitAdapter adapter = new PenyakitAdapter(getContext(), R.layout.item_penyakit,
+        BaseAdapter<Penyakit> adapter = new PenyakitAdapter(getContext(), R.layout.item_penyakit,
                 new ArrayList<Penyakit>(), this);
         mListPenyakit.setAdapter(adapter);
     }
